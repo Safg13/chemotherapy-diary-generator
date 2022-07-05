@@ -36,7 +36,7 @@ public class IntravesicalScheme {
         String dateOf7thDiary = sdf.format(calendarOf7thDiary.getTime());
 
         System.out.println(dateOfHospitalisation);
-        Diary.getIntravesicalTherapyDiary(drugChoice);
+        Diary.getInstillation(drugChoice);
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf2ndDiary);
@@ -48,7 +48,8 @@ public class IntravesicalScheme {
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf4thDiary);
-        Diary.getIntravesicalTherapyDiary(drugChoice);
+        Diary.getInstillation(drugChoice);
+        Diary.getDiary();
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf5thDiary);
@@ -60,7 +61,9 @@ public class IntravesicalScheme {
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf7thDiary);
-        Diary.getIntravesicalTherapyDischargeDiary(drugChoice);
+        Diary.getInstillation(drugChoice);
+        Diary.getDiary();
+        Diary.getDischarge();
         Diary.getAttendingPhysician();
     }
 
@@ -102,7 +105,7 @@ public class IntravesicalScheme {
         String dateOf9thDiary = sdf.format(calendarOf9thDiary.getTime());
 
         System.out.println(dateOfHospitalisation);
-        Diary.getIntravesicalTherapyDiary(drugChoice);
+        Diary.getInstillation(drugChoice);
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf2ndDiary);
@@ -118,7 +121,8 @@ public class IntravesicalScheme {
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf5thDiary);
-        Diary.getIntravesicalTherapyDiary(drugChoice);
+        Diary.getInstillation(drugChoice);
+        Diary.getDiary();
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf6thDiary);
@@ -134,7 +138,9 @@ public class IntravesicalScheme {
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf9thDiary);
-        Diary.getIntravesicalTherapyDischargeDiary(drugChoice);
+        Diary.getInstillation(drugChoice);
+        Diary.getDiary();
+        Diary.getDischarge();
         Diary.getAttendingPhysician();
     }
 
@@ -168,7 +174,7 @@ public class IntravesicalScheme {
         String dateOf7thDiary = sdf.format(calendarOf7thDiary.getTime());
 
         System.out.println(dateOfHospitalisation);
-        Diary.getIntravesicalTherapyDiary(drugChoice);
+        Diary.getInstillation(drugChoice);
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf2ndDiary + Diary.getHeadOfDepartmentRounds());
@@ -180,7 +186,8 @@ public class IntravesicalScheme {
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf4thDiary);
-        Diary.getIntravesicalTherapyDiary(drugChoice);
+        Diary.getInstillation(drugChoice);
+        Diary.getDiary();
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf5thDiary + Diary.getHeadOfDepartmentRounds());
@@ -192,7 +199,9 @@ public class IntravesicalScheme {
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf7thDiary);
-        Diary.getIntravesicalTherapyDischargeDiary(drugChoice);
+        Diary.getInstillation(drugChoice);
+        Diary.getDiary();
+        Diary.getDischarge();
         Diary.getAttendingPhysician();
     }
 
@@ -234,7 +243,7 @@ public class IntravesicalScheme {
         String dateOf9thDiary = sdf.format(calendarOf9thDiary.getTime());
 
         System.out.println(dateOfHospitalisation);
-        Diary.getIntravesicalTherapyDiary(drugChoice);
+        Diary.getInstillation(drugChoice);
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf2ndDiary + Diary.getHeadOfDepartmentRounds());
@@ -250,7 +259,8 @@ public class IntravesicalScheme {
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf5thDiary);
-        Diary.getIntravesicalTherapyDiary(drugChoice);
+        Diary.getInstillation(drugChoice);
+        Diary.getDiary();
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf6thDiary + Diary.getHeadOfDepartmentRounds());
@@ -266,7 +276,9 @@ public class IntravesicalScheme {
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf9thDiary);
-        Diary.getIntravesicalTherapyDischargeDiary(drugChoice);
+        Diary.getInstillation(drugChoice);
+        Diary.getDiary();
+        Diary.getDischarge();
         Diary.getAttendingPhysician();
     }
 
@@ -300,7 +312,7 @@ public class IntravesicalScheme {
         String dateOf7thDiary = sdf.format(calendarOf7thDiary.getTime());
 
         System.out.println(dateOfHospitalisation);
-        Diary.getIntravesicalTherapyDiary(drugChoice);
+        Diary.getInstillation(drugChoice);
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf2ndDiary);
@@ -312,7 +324,8 @@ public class IntravesicalScheme {
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf4thDiary + Diary.getHeadOfDepartmentRounds());
-        Diary.getIntravesicalTherapyDiary(drugChoice);
+        Diary.getInstillation(drugChoice);
+        Diary.getDiary();
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf5thDiary);
@@ -324,7 +337,9 @@ public class IntravesicalScheme {
         Diary.getAttendingPhysician();
 
         System.out.println("\n" + dateOf7thDiary + Diary.getHeadOfDepartmentRounds());
-        Diary.getIntravesicalTherapyDischargeDiary(drugChoice);
+        Diary.getInstillation(drugChoice);
+        Diary.getDiary();
+        Diary.getDischarge();
         Diary.getAttendingPhysician();
     }
 
