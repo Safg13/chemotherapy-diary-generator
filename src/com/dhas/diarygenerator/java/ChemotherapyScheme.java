@@ -523,7 +523,7 @@ public class ChemotherapyScheme {
             Diary.getDiary();
             Diary.getAttendingPhysician();
 
-            System.out.println("\n" + dateOf2ndDiary + Diary.getHeadOfDepartmentRounds());
+            System.out.println("\n" + dateOf2ndDiary);
             Diary.getDiary();
             Diary.getDischarge();
             Diary.getAttendingPhysician();

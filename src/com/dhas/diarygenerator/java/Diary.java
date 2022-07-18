@@ -2,15 +2,15 @@ package com.dhas.diarygenerator.java;
 
 public class Diary {
 
-    public static String getHeadOfDepartmentRounds() {
+    static String getHeadOfDepartmentRounds() {
         return " Совместный обход с зав. отделением Гуриным Э.В.";
     }
 
-    public static void getAttendingPhysician() {
+    static void getAttendingPhysician() {
         System.out.println("Леч. врач Майстренко Е.В.");
     }
 
-    public static void getDiary() {
+    static void getDiary() {
         var bodyTempMin = 36.5;
         var bodyTempMax = 36.9;
         var bodyTempScale = Math.pow(10, 1);
@@ -32,14 +32,14 @@ public class Diary {
         var systolicPressure = Math.round((Math.random() * (systolicPressureMax - systolicPressureMin)) +
                 systolicPressureMin);
 
-        while (systolicPressure % 5 != 0) {
+            while (systolicPressure % 5 != 0) {
             systolicPressure = systolicPressure + 1;
         }
 
         var diastolicPressure = Math.round((Math.random() * (diastolicPressureMax - diastolicPressureMin)) +
                 diastolicPressureMin);
 
-        while (diastolicPressure % 5 != 0) {
+            while (diastolicPressure % 5 != 0) {
             diastolicPressure = diastolicPressure + 1;
         }
 
@@ -51,7 +51,7 @@ public class Diary {
                 "безболезненное, диурез достаточный. Стул оформленный. Рекомендации выполняются.");
     }
 
-    public static void getTherapy(int drugChoice) {
+    static void getTherapy(int drugChoice) {
         switch (drugChoice) {
             case 1 ->
                     System.out.println("Пациент получил курс внутрипузырной терапии препаратом Доксорубицин 50 мг в/п, экспозиция препарата в мочевом пузыре 2 часа, перенес удовлетворительно.");
@@ -64,7 +64,7 @@ public class Diary {
         }
     }
 
-    public static void getDischarge() {
+    static void getDischarge() {
         System.out.println("Выписывается в удовлетворительном состоянии. Рекомендации при выписке даны.");
     }
 
