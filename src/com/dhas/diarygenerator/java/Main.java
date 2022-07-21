@@ -25,13 +25,19 @@ public class Main {
         Scanner scannerDrug = new Scanner(System.in);
         int drugChoice = scannerDrug.nextInt();
 
-        if (drugChoice != 1 && drugChoice != 2 && drugChoice != 3 && drugChoice != 4) {
-            System.out.println("Ошибка при выборе препарата");
+        while (drugChoice != 1 && drugChoice != 2 && drugChoice != 3 && drugChoice != 4) {
+            System.out.println("Ошибка при выборе препарата. Повторите ввод.");
+            drugChoice = scannerDrug.nextInt();
         }
 
         System.out.println("Выберите продолжительность схемы 1, 7 или 14 дней ");
         Scanner scannerChemotherapyDuration = new Scanner(System.in);
         int chemotherapyDuration = scannerChemotherapyDuration.nextInt();
+
+        while (chemotherapyDuration != 1 && chemotherapyDuration != 7 && chemotherapyDuration != 14) {
+            System.out.println("Ошибка при выборе продолжительности терапии. Повторите ввод.");
+            chemotherapyDuration = scannerChemotherapyDuration.nextInt();
+        }
 
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         OutputStream teeStream = new TeeOutputStream(System.out, buffer);
