@@ -7,6 +7,7 @@ import java.util.Calendar;
 public class ChemotherapyScheme {
 
     public static void getSchemeMonday(String dateOfHospitalisation, int drugChoice, int schemeDuration) throws ParseException {
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar calendarOf2ndDiary = Calendar.getInstance(); //создаем объект календаря
         calendarOf2ndDiary.setTime(sdf.parse(dateOfHospitalisation)); //парсим его в строку
@@ -39,68 +40,64 @@ public class ChemotherapyScheme {
 
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
-            Diary.getAttendingPhysician();
 
             System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf3rdDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf4thDiary);
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf5thDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf6thDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf7thDiary);
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getDischarge();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(true);
+
         } else if (schemeDuration == 7) {
+
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
-            Diary.getAttendingPhysician();
+
+            if (drugChoice == 3 || drugChoice == 4) { //в случае в/в или в/м преаратов генерируем дневник
+                Diary.getDiary(false);
+            }
 
             System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf3rdDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf4thDiary);
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getDischarge();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(true);
+
         } else if (schemeDuration == 1) {
+
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary();
-            Diary.getDischarge();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(true);
+
         } else {
+
             System.out.println("Выбрана неверная продолжительность схемы химиотерапии.");
+
         }
     }
 
     public static void getSchemeTuesday(String dateOfHospitalisation, int drugChoice, int schemeDuration) throws ParseException {
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar calendarOf2ndDiary = Calendar.getInstance(); //создаем объект календаря
         calendarOf2ndDiary.setTime(sdf.parse(dateOfHospitalisation)); //парсим его в строку
@@ -138,82 +135,76 @@ public class ChemotherapyScheme {
         String dateOf9thDiary = sdf.format(calendarOf9thDiary.getTime());
 
         if (schemeDuration == 14) {
+
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
-            Diary.getAttendingPhysician();
 
             System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf3rdDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf4thDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf5thDiary);
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf6thDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf7thDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf8thDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf9thDiary);
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getDischarge();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(true);
+
         } else if (schemeDuration == 7) {
+
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
-            Diary.getAttendingPhysician();
+
+            if (drugChoice == 3 || drugChoice == 4) { //в случае в/в или в/м преаратов генерируем дневник
+                Diary.getDiary(false);
+            }
 
             System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf3rdDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf4thDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf5thDiary);
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getDischarge();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(true);
+
         } else if (schemeDuration == 1) {
+
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary();
-            Diary.getDischarge();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(true);
+
         } else {
+
             System.out.println("Выбрана неверная продолжительность схемы химиотерапии.");
+
         }
     }
 
     public static void getSchemeWednesday(String dateOfHospitalisation, int drugChoice, int schemeDuration) throws ParseException {
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar calendarOf2ndDiary = Calendar.getInstance(); //создаем объект календаря
         calendarOf2ndDiary.setTime(sdf.parse(dateOfHospitalisation)); //парсим его в строку
@@ -243,68 +234,57 @@ public class ChemotherapyScheme {
         String dateOf7thDiary = sdf.format(calendarOf7thDiary.getTime());
 
         if (schemeDuration == 14) {
+
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
-            Diary.getAttendingPhysician();
 
             System.out.println("\n" + dateOf2ndDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf3rdDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf4thDiary);
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf5thDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf6thDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf7thDiary);
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getDischarge();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(true);
 
         } else if (schemeDuration == 7) {
 
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
-            Diary.getAttendingPhysician();
+
+            if (drugChoice == 3 || drugChoice == 4) {//в случае в/в или в/м преаратов генерируем дневник
+                Diary.getDiary(false);
+            }
 
             System.out.println("\n" + dateOf2ndDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf3rdDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf4thDiary);
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getDischarge();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(true);
 
         } else if (schemeDuration == 1) {
 
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary();
-            Diary.getDischarge();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(true);
 
         } else {
 
@@ -314,6 +294,7 @@ public class ChemotherapyScheme {
     }
 
     public static void getSchemeThursday(String dateOfHospitalisation, int drugChoice, int schemeDuration) throws ParseException {
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar calendarOf2ndDiary = Calendar.getInstance(); //создаем объект календаря
         calendarOf2ndDiary.setTime(sdf.parse(dateOfHospitalisation)); //парсим его в строку
@@ -354,78 +335,63 @@ public class ChemotherapyScheme {
 
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
-            Diary.getAttendingPhysician();
 
             System.out.println("\n" + dateOf2ndDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf3rdDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf4thDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf5thDiary);
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf6thDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf7thDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf8thDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf9thDiary);
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getDischarge();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(true);
 
         } else if (schemeDuration == 7) {
 
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
-            Diary.getAttendingPhysician();
+
+            if (drugChoice == 3 || drugChoice == 4) { //в случае в/в или в/м преаратов генерируем дневник
+                Diary.getDiary(false);
+            }
 
             System.out.println("\n" + dateOf2ndDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf3rdDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf4thDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf5thDiary);
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getDischarge();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(true);
 
         } else if (schemeDuration == 1) {
 
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
-            System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary();
-            Diary.getDischarge();
-            Diary.getAttendingPhysician();
+            System.out.println("\n" + dateOf2ndDiary + Diary.getHeadOfDepartmentRounds());
+            Diary.getDiary(true);
 
         } else {
 
@@ -435,6 +401,7 @@ public class ChemotherapyScheme {
     }
 
     public static void getSchemeFriday(String dateOfHospitalisation, int drugChoice, int schemeDuration) throws ParseException {
+
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         Calendar calendarOf2ndDiary = Calendar.getInstance(); //создаем объект календаря
         calendarOf2ndDiary.setTime(sdf.parse(dateOfHospitalisation)); //парсим его в строку
@@ -467,66 +434,54 @@ public class ChemotherapyScheme {
 
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
-            Diary.getAttendingPhysician();
 
             System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf3rdDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf4thDiary + Diary.getHeadOfDepartmentRounds());
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf5thDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf6thDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf7thDiary + Diary.getHeadOfDepartmentRounds());
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getDischarge();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(true);
 
         } else if (schemeDuration == 7) {
 
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
-            Diary.getAttendingPhysician();
+
+            if (drugChoice == 3 || drugChoice == 4) { //в случае в/в или в/м преаратов генерируем дневник
+                Diary.getDiary(false);
+            }
 
             System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf3rdDiary);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf4thDiary + Diary.getHeadOfDepartmentRounds());
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getDischarge();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(true);
 
         } else if (schemeDuration == 1) {
 
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
-            Diary.getDiary();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(false);
 
             System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary();
-            Diary.getDischarge();
-            Diary.getAttendingPhysician();
+            Diary.getDiary(true);
 
         } else {
 
@@ -534,4 +489,5 @@ public class ChemotherapyScheme {
 
         }
     }
+
 }
