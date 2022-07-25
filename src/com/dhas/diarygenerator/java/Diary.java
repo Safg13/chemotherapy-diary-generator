@@ -69,5 +69,8 @@ public class Diary {
         }
     }
 
+    static void getAttendingPhysician() {
+        System.out.println("Леч. врач Майстренко Е.В.");
+    }
 
 }

@@ -40,6 +40,7 @@ public class ChemotherapyScheme {
 
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
+            Diary.getAttendingPhysician();
 
             System.out.println("\n" + dateOf2ndDiary);
             Diary.getDiary(false);
@@ -64,9 +65,12 @@ public class ChemotherapyScheme {
         } else if (schemeDuration == 7) {
 
             System.out.println(dateOfHospitalisation);
-            Diary.getTherapy(drugChoice);
-
+            if (drugChoice == 1 || drugChoice == 2) {
+                Diary.getTherapy(drugChoice);
+                Diary.getAttendingPhysician();
+            }
             if (drugChoice == 3 || drugChoice == 4) { //в случае в/в или в/м преаратов генерируем дневник
+                Diary.getTherapy(drugChoice);
                 Diary.getDiary(false);
             }
 
@@ -138,6 +142,7 @@ public class ChemotherapyScheme {
 
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
+            Diary.getAttendingPhysician();
 
             System.out.println("\n" + dateOf2ndDiary);
             Diary.getDiary(false);
@@ -168,9 +173,12 @@ public class ChemotherapyScheme {
         } else if (schemeDuration == 7) {
 
             System.out.println(dateOfHospitalisation);
-            Diary.getTherapy(drugChoice);
-
+            if (drugChoice == 1 || drugChoice == 2) {
+                Diary.getTherapy(drugChoice);
+                Diary.getAttendingPhysician();
+            }
             if (drugChoice == 3 || drugChoice == 4) { //в случае в/в или в/м преаратов генерируем дневник
+                Diary.getTherapy(drugChoice);
                 Diary.getDiary(false);
             }
 
@@ -237,6 +245,7 @@ public class ChemotherapyScheme {
 
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
+            Diary.getAttendingPhysician();
 
             System.out.println("\n" + dateOf2ndDiary + Diary.getHeadOfDepartmentRounds());
             Diary.getDiary(false);
@@ -261,9 +270,12 @@ public class ChemotherapyScheme {
         } else if (schemeDuration == 7) {
 
             System.out.println(dateOfHospitalisation);
-            Diary.getTherapy(drugChoice);
-
+            if (drugChoice == 1 || drugChoice == 2) {
+                Diary.getTherapy(drugChoice);
+                Diary.getAttendingPhysician();
+            }
             if (drugChoice == 3 || drugChoice == 4) {//в случае в/в или в/м преаратов генерируем дневник
+                Diary.getTherapy(drugChoice);
                 Diary.getDiary(false);
             }
 
@@ -335,6 +347,7 @@ public class ChemotherapyScheme {
 
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
+            Diary.getAttendingPhysician();
 
             System.out.println("\n" + dateOf2ndDiary + Diary.getHeadOfDepartmentRounds());
             Diary.getDiary(false);
@@ -365,9 +378,12 @@ public class ChemotherapyScheme {
         } else if (schemeDuration == 7) {
 
             System.out.println(dateOfHospitalisation);
-            Diary.getTherapy(drugChoice);
-
+            if (drugChoice == 1 || drugChoice == 2) {
+                Diary.getTherapy(drugChoice);
+                Diary.getAttendingPhysician();
+            }
             if (drugChoice == 3 || drugChoice == 4) { //в случае в/в или в/м преаратов генерируем дневник
+                Diary.getTherapy(drugChoice);
                 Diary.getDiary(false);
             }
 
@@ -434,6 +450,7 @@ public class ChemotherapyScheme {
 
             System.out.println(dateOfHospitalisation);
             Diary.getTherapy(drugChoice);
+            Diary.getAttendingPhysician();
 
             System.out.println("\n" + dateOf2ndDiary);
             Diary.getDiary(false);
@@ -458,9 +475,12 @@ public class ChemotherapyScheme {
         } else if (schemeDuration == 7) {
 
             System.out.println(dateOfHospitalisation);
-            Diary.getTherapy(drugChoice);
-
-            if (drugChoice == 3 || drugChoice == 4) { //в случае в/в или в/м преаратов генерируем дневник
+            if (drugChoice == 1 || drugChoice == 2) {
+                Diary.getTherapy(drugChoice);
+                Diary.getAttendingPhysician();
+            }
+            if (drugChoice == 3 || drugChoice == 4) { //в случае в/в или в/м препаратов генерируем дневник
+                Diary.getTherapy(drugChoice);
                 Diary.getDiary(false);
             }
 
