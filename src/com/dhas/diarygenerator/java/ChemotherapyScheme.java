@@ -81,7 +81,18 @@ public class ChemotherapyScheme {
             Diary.getDiary(false);
 
             System.out.println("\n" + dateOf4thDiary);
-            Diary.getTherapy(drugChoice);
+
+            if (drugChoice == 1 || drugChoice == 2) {
+                Diary.getTherapy(drugChoice);
+            }
+            if (drugChoice == 3) { //если используется 7 дневная схема доцетаксел добавляем АДТ
+                Diary.getTherapy(4);
+            }
+
+            if (drugChoice == 4) { //если используется 7 дневная схема трипторелин добавляем доцетаксел
+                Diary.getTherapy(3);
+            }
+
             Diary.getDiary(true);
 
         } else if (schemeDuration == 1) {
@@ -192,7 +203,18 @@ public class ChemotherapyScheme {
             Diary.getDiary(false);
 
             System.out.println("\n" + dateOf5thDiary);
-            Diary.getTherapy(drugChoice);
+
+            if (drugChoice == 1 || drugChoice == 2) {
+                Diary.getTherapy(drugChoice);
+            }
+            if (drugChoice == 3) { //если используется 7 дневная схема доцетаксел добавляем АДТ
+                Diary.getTherapy(4);
+            }
+
+            if (drugChoice == 4) { //если используется 7 дневная схема трипторелин добавляем доцетаксел
+                Diary.getTherapy(3);
+            }
+
             Diary.getDiary(true);
 
         } else if (schemeDuration == 1) {
@@ -286,7 +308,18 @@ public class ChemotherapyScheme {
             Diary.getDiary(false);
 
             System.out.println("\n" + dateOf4thDiary);
-            Diary.getTherapy(drugChoice);
+
+            if (drugChoice == 1 || drugChoice == 2) {
+                Diary.getTherapy(drugChoice);
+            }
+            if (drugChoice == 3) { //если используется 7 дневная схема доцетаксел добавляем АДТ
+                Diary.getTherapy(4);
+            }
+
+            if (drugChoice == 4) { //если используется 7 дневная схема трипторелин добавляем доцетаксел
+                Diary.getTherapy(3);
+            }
+
             Diary.getDiary(true);
 
         } else if (schemeDuration == 1) {
@@ -397,7 +430,18 @@ public class ChemotherapyScheme {
             Diary.getDiary(false);
 
             System.out.println("\n" + dateOf5thDiary);
-            Diary.getTherapy(drugChoice);
+
+            if (drugChoice == 1 || drugChoice == 2) {
+                Diary.getTherapy(drugChoice);
+            }
+            if (drugChoice == 3) { //если используется 7 дневная схема доцетаксел добавляем АДТ
+                Diary.getTherapy(4);
+            }
+
+            if (drugChoice == 4) { //если используется 7 дневная схема трипторелин добавляем доцетаксел
+                Diary.getTherapy(3);
+            }
+
             Diary.getDiary(true);
 
         } else if (schemeDuration == 1) {
@@ -491,7 +535,18 @@ public class ChemotherapyScheme {
             Diary.getDiary(false);
 
             System.out.println("\n" + dateOf4thDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getTherapy(drugChoice);
+
+            if (drugChoice == 1 || drugChoice == 2) {
+                Diary.getTherapy(drugChoice);
+            }
+            if (drugChoice == 3) { //если используется 7 дневная схема доцетаксел добавляем АДТ
+                Diary.getTherapy(4);
+            }
+
+            if (drugChoice == 4) { //если используется 7 дневная схема трипторелин добавляем доцетаксел
+                Diary.getTherapy(3);
+            }
+
             Diary.getDiary(true);
 
         } else if (schemeDuration == 1) {
