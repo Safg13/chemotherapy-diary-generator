@@ -1,18 +1,14 @@
 package com.dhas.diarygenerator.java;
 
+import org.apache.commons.io.output.TeeOutputStream;
+
+import java.awt.*;
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
-
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
-
-import org.apache.commons.io.output.TeeOutputStream;
 
 public class Main {
 
@@ -79,5 +75,9 @@ public class Main {
             buffer.writeTo(fileStream);
 
         }
+
+        //открываем файл в стандартной программе
+        Desktop.getDesktop().open(new File("diary.txt"));
+
     }
 }
