@@ -5,564 +5,72 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class ChemotherapyScheme {
+    static SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
-    public static void getSchemeMonday(String dateOfHospitalisation, int drugChoice, int schemeDuration) throws ParseException {
+    public static void getCircularScheme(String dateOfHospitalisation, String drugChoice, int schemeDuration) throws ParseException {
+        Calendar initialDate = Calendar.getInstance();
+        initialDate.setTime(sdf.parse(dateOfHospitalisation));
 
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Calendar calendarOf2ndDiary = Calendar.getInstance(); //создаем объект календаря
-        calendarOf2ndDiary.setTime(sdf.parse(dateOfHospitalisation)); //парсим его в строку
-        Calendar calendarOf3rdDiary = Calendar.getInstance();
-        calendarOf3rdDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf4thDiary = Calendar.getInstance();
-        calendarOf4thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf5thDiary = Calendar.getInstance();
-        calendarOf5thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf6thDiary = Calendar.getInstance();
-        calendarOf6thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf7thDiary = Calendar.getInstance();
-        calendarOf7thDiary.setTime(sdf.parse(dateOfHospitalisation));
+        Calendar processingDate = Calendar.getInstance();
+        processingDate.setTime(sdf.parse(dateOfHospitalisation)); //РїР°СЂСЃРёРј РѕР±СЉРµРєС‚ РєР°Р»РµРЅРґР°СЂСЏ РІ СЃС‚СЂРѕРєСѓ
 
-        calendarOf2ndDiary.add(Calendar.DATE, 2);  // number of days to add
-        calendarOf3rdDiary.add(Calendar.DATE, 4);
-        calendarOf4thDiary.add(Calendar.DATE, 7);
-        calendarOf5thDiary.add(Calendar.DATE, 9);
-        calendarOf6thDiary.add(Calendar.DATE, 11);
-        calendarOf7thDiary.add(Calendar.DATE, 14);
+        Calendar dischargeDate = Calendar.getInstance();
+        dischargeDate.setTime(sdf.parse(dateOfHospitalisation));
+        dischargeDate.add(Calendar.DATE, schemeDuration);
 
-        String dateOf2ndDiary = sdf.format(calendarOf2ndDiary.getTime());
-        String dateOf3rdDiary = sdf.format(calendarOf3rdDiary.getTime());
-        String dateOf4thDiary = sdf.format(calendarOf4thDiary.getTime());
-        String dateOf5thDiary = sdf.format(calendarOf5thDiary.getTime());
-        String dateOf6thDiary = sdf.format(calendarOf6thDiary.getTime());
-        String dateOf7thDiary = sdf.format(calendarOf7thDiary.getTime());
+        Calendar finishDate = Calendar.getInstance();
+        finishDate.setTime(sdf.parse(dateOfHospitalisation));
+        finishDate.add(Calendar.DATE, schemeDuration + 1);
 
-        if (schemeDuration == 14) {
+        int i = 0; //РёС‚РµСЂР°С‚РѕСЂ РїРѕ РјР°СЃСЃРёРІР°Рј СЃ РєРѕР»-РІРѕРј РґРѕР±Р°РІР»СЏРµРјС‹С… РґРЅРµР№
 
-            System.out.println(dateOfHospitalisation);
-            Diary.getTherapy(drugChoice);
-            Diary.getAttendingPhysician();
+        while (processingDate.before(finishDate)) {
+            int[] cycles = SchemePeriods.getPeriodByDate(initialDate);
 
-            System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary(false);
+            if (processingDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
 
-            System.out.println("\n" + dateOf3rdDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary(false);
+                System.out.println(sdf.format(processingDate.getTime()) + Diary.getHeadOfDepartmentRounds());
+            } else {
 
-            System.out.println("\n" + dateOf4thDiary);
-            Diary.getTherapy(drugChoice);
-            Diary.getDiary(false);
+                System.out.println(sdf.format(processingDate.getTime()));
+            }
 
-            System.out.println("\n" + dateOf5thDiary);
-            Diary.getDiary(false);
+            if (processingDate.equals(initialDate)) {
 
-            System.out.println("\n" + dateOf6thDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf7thDiary);
-            Diary.getTherapy(drugChoice);
-            Diary.getDiary(true);
-
-        } else if (schemeDuration == 7) {
-
-            System.out.println(dateOfHospitalisation);
-            if (drugChoice == 1 || drugChoice == 2) {
                 Diary.getTherapy(drugChoice);
-                Diary.getAttendingPhysician();
-            }
-            if (drugChoice == 3 || drugChoice == 4) { //в случае в/в или в/м преаратов генерируем дневник
+
+            } else if (processingDate.get(Calendar.DAY_OF_WEEK) == initialDate.get(Calendar.DAY_OF_WEEK)
+                    && (drugChoice.equals("1") || drugChoice.equals("2"))) {
+
                 Diary.getTherapy(drugChoice);
-                Diary.getDiary(false);
+
+            } else if (processingDate.equals(dischargeDate) && (drugChoice.equals("6"))) {
+
+                Diary.getTherapy("5");
+            } else if (processingDate.equals(dischargeDate) && (drugChoice.equals("7"))) {
+
+                Diary.getTherapy("6");
+            } else if (processingDate.equals(dischargeDate) && (drugChoice.equals("8"))) {
+
+                Diary.getTherapy("5");
+            } else if (processingDate.equals(dischargeDate) && (drugChoice.equals("9"))) {
+
+                Diary.getTherapy("4");
             }
 
-            System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary(false);
+            Diary.getDiary(processingDate.equals(dischargeDate)); //РґРЅРµРІРЅРёРє РІС‹РїРёСЃРѕС‡РЅС‹Р№ РµСЃР»Рё РґРµРЅСЊ РїРѕСЃР»РµРґРЅРёР№
 
-            System.out.println("\n" + dateOf3rdDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary(false);
+            processingDate.add(Calendar.DATE, cycles[i]);
+            System.out.println();
 
-            System.out.println("\n" + dateOf4thDiary);
+            i++;
 
-            if (drugChoice == 1 || drugChoice == 2) {
-                Diary.getTherapy(drugChoice);
+            if (i == cycles.length) {
+                i = 0;
             }
-            if (drugChoice == 3) { //если используется 7 дневная схема доцетаксел добавляем АДТ
-                Diary.getTherapy(4);
-            }
-
-            if (drugChoice == 4) { //если используется 7 дневная схема трипторелин добавляем доцетаксел
-                Diary.getTherapy(3);
-            }
-
-            Diary.getDiary(true);
-
-        } else if (schemeDuration == 1) {
-
-            System.out.println(dateOfHospitalisation);
-            Diary.getTherapy(drugChoice);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary(true);
-
-        } else {
-
-            System.out.println("Выбрана неверная продолжительность схемы химиотерапии.");
-
         }
     }
-
-    public static void getSchemeTuesday(String dateOfHospitalisation, int drugChoice, int schemeDuration) throws ParseException {
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Calendar calendarOf2ndDiary = Calendar.getInstance(); //создаем объект календаря
-        calendarOf2ndDiary.setTime(sdf.parse(dateOfHospitalisation)); //парсим его в строку
-        Calendar calendarOf3rdDiary = Calendar.getInstance();
-        calendarOf3rdDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf4thDiary = Calendar.getInstance();
-        calendarOf4thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf5thDiary = Calendar.getInstance();
-        calendarOf5thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf6thDiary = Calendar.getInstance();
-        calendarOf6thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf7thDiary = Calendar.getInstance();
-        calendarOf7thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf8thDiary = Calendar.getInstance();
-        calendarOf8thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf9thDiary = Calendar.getInstance();
-        calendarOf9thDiary.setTime(sdf.parse(dateOfHospitalisation));
-
-        calendarOf2ndDiary.add(Calendar.DATE, 1);  // number of days to add
-        calendarOf3rdDiary.add(Calendar.DATE, 3);
-        calendarOf4thDiary.add(Calendar.DATE, 6);
-        calendarOf5thDiary.add(Calendar.DATE, 7);
-        calendarOf6thDiary.add(Calendar.DATE, 8);
-        calendarOf7thDiary.add(Calendar.DATE, 10);
-        calendarOf8thDiary.add(Calendar.DATE, 13);
-        calendarOf9thDiary.add(Calendar.DATE, 14);
-
-        String dateOf2ndDiary = sdf.format(calendarOf2ndDiary.getTime());
-        String dateOf3rdDiary = sdf.format(calendarOf3rdDiary.getTime());
-        String dateOf4thDiary = sdf.format(calendarOf4thDiary.getTime());
-        String dateOf5thDiary = sdf.format(calendarOf5thDiary.getTime());
-        String dateOf6thDiary = sdf.format(calendarOf6thDiary.getTime());
-        String dateOf7thDiary = sdf.format(calendarOf7thDiary.getTime());
-        String dateOf8thDiary = sdf.format(calendarOf8thDiary.getTime());
-        String dateOf9thDiary = sdf.format(calendarOf9thDiary.getTime());
-
-        if (schemeDuration == 14) {
-
-            System.out.println(dateOfHospitalisation);
-            Diary.getTherapy(drugChoice);
-            Diary.getAttendingPhysician();
-
-            System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf3rdDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf4thDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf5thDiary);
-            Diary.getTherapy(drugChoice);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf6thDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf7thDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf8thDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf9thDiary);
-            Diary.getTherapy(drugChoice);
-            Diary.getDiary(true);
-
-        } else if (schemeDuration == 7) {
-
-            System.out.println(dateOfHospitalisation);
-            if (drugChoice == 1 || drugChoice == 2) {
-                Diary.getTherapy(drugChoice);
-                Diary.getAttendingPhysician();
-            }
-            if (drugChoice == 3 || drugChoice == 4) { //в случае в/в или в/м преаратов генерируем дневник
-                Diary.getTherapy(drugChoice);
-                Diary.getDiary(false);
-            }
-
-            System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf3rdDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf4thDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf5thDiary);
-
-            if (drugChoice == 1 || drugChoice == 2) {
-                Diary.getTherapy(drugChoice);
-            }
-            if (drugChoice == 3) { //если используется 7 дневная схема доцетаксел добавляем АДТ
-                Diary.getTherapy(4);
-            }
-
-            if (drugChoice == 4) { //если используется 7 дневная схема трипторелин добавляем доцетаксел
-                Diary.getTherapy(3);
-            }
-
-            Diary.getDiary(true);
-
-        } else if (schemeDuration == 1) {
-
-            System.out.println(dateOfHospitalisation);
-            Diary.getTherapy(drugChoice);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary(true);
-
-        } else {
-
-            System.out.println("Выбрана неверная продолжительность схемы химиотерапии.");
-
-        }
-    }
-
-    public static void getSchemeWednesday(String dateOfHospitalisation, int drugChoice, int schemeDuration) throws ParseException {
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Calendar calendarOf2ndDiary = Calendar.getInstance(); //создаем объект календаря
-        calendarOf2ndDiary.setTime(sdf.parse(dateOfHospitalisation)); //парсим его в строку
-        Calendar calendarOf3rdDiary = Calendar.getInstance();
-        calendarOf3rdDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf4thDiary = Calendar.getInstance();
-        calendarOf4thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf5thDiary = Calendar.getInstance();
-        calendarOf5thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf6thDiary = Calendar.getInstance();
-        calendarOf6thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf7thDiary = Calendar.getInstance();
-        calendarOf7thDiary.setTime(sdf.parse(dateOfHospitalisation));
-
-        calendarOf2ndDiary.add(Calendar.DATE, 2);  // number of days to add
-        calendarOf3rdDiary.add(Calendar.DATE, 5);
-        calendarOf4thDiary.add(Calendar.DATE, 7);
-        calendarOf5thDiary.add(Calendar.DATE, 9);
-        calendarOf6thDiary.add(Calendar.DATE, 12);
-        calendarOf7thDiary.add(Calendar.DATE, 14);
-
-        String dateOf2ndDiary = sdf.format(calendarOf2ndDiary.getTime());
-        String dateOf3rdDiary = sdf.format(calendarOf3rdDiary.getTime());
-        String dateOf4thDiary = sdf.format(calendarOf4thDiary.getTime());
-        String dateOf5thDiary = sdf.format(calendarOf5thDiary.getTime());
-        String dateOf6thDiary = sdf.format(calendarOf6thDiary.getTime());
-        String dateOf7thDiary = sdf.format(calendarOf7thDiary.getTime());
-
-        if (schemeDuration == 14) {
-
-            System.out.println(dateOfHospitalisation);
-            Diary.getTherapy(drugChoice);
-            Diary.getAttendingPhysician();
-
-            System.out.println("\n" + dateOf2ndDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf3rdDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf4thDiary);
-            Diary.getTherapy(drugChoice);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf5thDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf6thDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf7thDiary);
-            Diary.getTherapy(drugChoice);
-            Diary.getDiary(true);
-
-        } else if (schemeDuration == 7) {
-
-            System.out.println(dateOfHospitalisation);
-            if (drugChoice == 1 || drugChoice == 2) {
-                Diary.getTherapy(drugChoice);
-                Diary.getAttendingPhysician();
-            }
-            if (drugChoice == 3 || drugChoice == 4) {//в случае в/в или в/м преаратов генерируем дневник
-                Diary.getTherapy(drugChoice);
-                Diary.getDiary(false);
-            }
-
-            System.out.println("\n" + dateOf2ndDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf3rdDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf4thDiary);
-
-            if (drugChoice == 1 || drugChoice == 2) {
-                Diary.getTherapy(drugChoice);
-            }
-            if (drugChoice == 3) { //если используется 7 дневная схема доцетаксел добавляем АДТ
-                Diary.getTherapy(4);
-            }
-
-            if (drugChoice == 4) { //если используется 7 дневная схема трипторелин добавляем доцетаксел
-                Diary.getTherapy(3);
-            }
-
-            Diary.getDiary(true);
-
-        } else if (schemeDuration == 1) {
-
-            System.out.println(dateOfHospitalisation);
-            Diary.getTherapy(drugChoice);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary(true);
-
-        } else {
-
-            System.out.println("Выбрана неверная продолжительность схемы химиотерапии.");
-
-        }
-    }
-
-    public static void getSchemeThursday(String dateOfHospitalisation, int drugChoice, int schemeDuration) throws ParseException {
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Calendar calendarOf2ndDiary = Calendar.getInstance(); //создаем объект календаря
-        calendarOf2ndDiary.setTime(sdf.parse(dateOfHospitalisation)); //парсим его в строку
-        Calendar calendarOf3rdDiary = Calendar.getInstance();
-        calendarOf3rdDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf4thDiary = Calendar.getInstance();
-        calendarOf4thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf5thDiary = Calendar.getInstance();
-        calendarOf5thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf6thDiary = Calendar.getInstance();
-        calendarOf6thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf7thDiary = Calendar.getInstance();
-        calendarOf7thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf8thDiary = Calendar.getInstance();
-        calendarOf8thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf9thDiary = Calendar.getInstance();
-        calendarOf9thDiary.setTime(sdf.parse(dateOfHospitalisation));
-
-        calendarOf2ndDiary.add(Calendar.DATE, 1);  // number of days to add
-        calendarOf3rdDiary.add(Calendar.DATE, 4);
-        calendarOf4thDiary.add(Calendar.DATE, 6);
-        calendarOf5thDiary.add(Calendar.DATE, 7);
-        calendarOf6thDiary.add(Calendar.DATE, 8);
-        calendarOf7thDiary.add(Calendar.DATE, 11);
-        calendarOf8thDiary.add(Calendar.DATE, 13);
-        calendarOf9thDiary.add(Calendar.DATE, 14);
-
-        String dateOf2ndDiary = sdf.format(calendarOf2ndDiary.getTime());
-        String dateOf3rdDiary = sdf.format(calendarOf3rdDiary.getTime());
-        String dateOf4thDiary = sdf.format(calendarOf4thDiary.getTime());
-        String dateOf5thDiary = sdf.format(calendarOf5thDiary.getTime());
-        String dateOf6thDiary = sdf.format(calendarOf6thDiary.getTime());
-        String dateOf7thDiary = sdf.format(calendarOf7thDiary.getTime());
-        String dateOf8thDiary = sdf.format(calendarOf8thDiary.getTime());
-        String dateOf9thDiary = sdf.format(calendarOf9thDiary.getTime());
-
-        if (schemeDuration == 14) {
-
-            System.out.println(dateOfHospitalisation);
-            Diary.getTherapy(drugChoice);
-            Diary.getAttendingPhysician();
-
-            System.out.println("\n" + dateOf2ndDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf3rdDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf4thDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf5thDiary);
-            Diary.getTherapy(drugChoice);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf6thDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf7thDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf8thDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf9thDiary);
-            Diary.getTherapy(drugChoice);
-            Diary.getDiary(true);
-
-        } else if (schemeDuration == 7) {
-
-            System.out.println(dateOfHospitalisation);
-            if (drugChoice == 1 || drugChoice == 2) {
-                Diary.getTherapy(drugChoice);
-                Diary.getAttendingPhysician();
-            }
-            if (drugChoice == 3 || drugChoice == 4) { //в случае в/в или в/м преаратов генерируем дневник
-                Diary.getTherapy(drugChoice);
-                Diary.getDiary(false);
-            }
-
-            System.out.println("\n" + dateOf2ndDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf3rdDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf4thDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf5thDiary);
-
-            if (drugChoice == 1 || drugChoice == 2) {
-                Diary.getTherapy(drugChoice);
-            }
-            if (drugChoice == 3) { //если используется 7 дневная схема доцетаксел добавляем АДТ
-                Diary.getTherapy(4);
-            }
-
-            if (drugChoice == 4) { //если используется 7 дневная схема трипторелин добавляем доцетаксел
-                Diary.getTherapy(3);
-            }
-
-            Diary.getDiary(true);
-
-        } else if (schemeDuration == 1) {
-
-            System.out.println(dateOfHospitalisation);
-            Diary.getTherapy(drugChoice);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf2ndDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getDiary(true);
-
-        } else {
-
-            System.out.println("Выбрана неверная продолжительность схемы химиотерапии.");
-
-        }
-    }
-
-    public static void getSchemeFriday(String dateOfHospitalisation, int drugChoice, int schemeDuration) throws ParseException {
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Calendar calendarOf2ndDiary = Calendar.getInstance(); //создаем объект календаря
-        calendarOf2ndDiary.setTime(sdf.parse(dateOfHospitalisation)); //парсим его в строку
-        Calendar calendarOf3rdDiary = Calendar.getInstance();
-        calendarOf3rdDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf4thDiary = Calendar.getInstance();
-        calendarOf4thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf5thDiary = Calendar.getInstance();
-        calendarOf5thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf6thDiary = Calendar.getInstance();
-        calendarOf6thDiary.setTime(sdf.parse(dateOfHospitalisation));
-        Calendar calendarOf7thDiary = Calendar.getInstance();
-        calendarOf7thDiary.setTime(sdf.parse(dateOfHospitalisation));
-
-        calendarOf2ndDiary.add(Calendar.DATE, 3);  // number of days to add
-        calendarOf3rdDiary.add(Calendar.DATE, 5);
-        calendarOf4thDiary.add(Calendar.DATE, 7);
-        calendarOf5thDiary.add(Calendar.DATE, 10);
-        calendarOf6thDiary.add(Calendar.DATE, 12);
-        calendarOf7thDiary.add(Calendar.DATE, 14);
-
-        String dateOf2ndDiary = sdf.format(calendarOf2ndDiary.getTime());
-        String dateOf3rdDiary = sdf.format(calendarOf3rdDiary.getTime());
-        String dateOf4thDiary = sdf.format(calendarOf4thDiary.getTime());
-        String dateOf5thDiary = sdf.format(calendarOf5thDiary.getTime());
-        String dateOf6thDiary = sdf.format(calendarOf6thDiary.getTime());
-        String dateOf7thDiary = sdf.format(calendarOf7thDiary.getTime());
-
-        if (schemeDuration == 14) {
-
-            System.out.println(dateOfHospitalisation);
-            Diary.getTherapy(drugChoice);
-            Diary.getAttendingPhysician();
-
-            System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf3rdDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf4thDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getTherapy(drugChoice);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf5thDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf6thDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf7thDiary + Diary.getHeadOfDepartmentRounds());
-            Diary.getTherapy(drugChoice);
-            Diary.getDiary(true);
-
-        } else if (schemeDuration == 7) {
-
-            System.out.println(dateOfHospitalisation);
-            if (drugChoice == 1 || drugChoice == 2) {
-                Diary.getTherapy(drugChoice);
-                Diary.getAttendingPhysician();
-            }
-            if (drugChoice == 3 || drugChoice == 4) { //в случае в/в или в/м препаратов генерируем дневник
-                Diary.getTherapy(drugChoice);
-                Diary.getDiary(false);
-            }
-
-            System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf3rdDiary);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf4thDiary + Diary.getHeadOfDepartmentRounds());
-
-            if (drugChoice == 1 || drugChoice == 2) {
-                Diary.getTherapy(drugChoice);
-            }
-            if (drugChoice == 3) { //если используется 7 дневная схема доцетаксел добавляем АДТ
-                Diary.getTherapy(4);
-            }
-
-            if (drugChoice == 4) { //если используется 7 дневная схема трипторелин добавляем доцетаксел
-                Diary.getTherapy(3);
-            }
-
-            Diary.getDiary(true);
-
-        } else if (schemeDuration == 1) {
-
-            System.out.println(dateOfHospitalisation);
-            Diary.getTherapy(drugChoice);
-            Diary.getDiary(false);
-
-            System.out.println("\n" + dateOf2ndDiary);
-            Diary.getDiary(true);
-
-        } else {
-
-            System.out.println("Выбрана неверная продолжительность схемы химиотерапии.");
-
-        }
-    }
-
 }
+
+
+

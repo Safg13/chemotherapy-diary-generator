@@ -1,83 +1,67 @@
 package com.dhas.diarygenerator.java;
 
-import org.apache.commons.io.output.TeeOutputStream;
-
 import java.awt.*;
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
-
-    public static void main(String[] args) throws ParseException, IOException {
-
+    public static void main(String[] args) throws ParseException {
         Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Введите дату госпитализации в формате dd-MM-yyyy ");
+        System.out.println("Enter hospitalisation date:");
         String inputtedDateOfHospitalisation = scanner.nextLine();
+        String[] parsedDates = getDatesFromString(inputtedDateOfHospitalisation);
 
-        System.out.println("Выберите препарат, 1 - Доксорубицин, 2 - Имуронвак, 3 - Доцетаксел, 4 - Трипторелин ");
-        int drugChoice = scanner.nextInt();
+        String drugChoice;
+        int chemotherapyDuration = 0;
 
-        while (drugChoice != 1 && drugChoice != 2 && drugChoice != 3 && drugChoice != 4) {
-
-            System.out.println("Ошибка при выборе препарата. Повторите ввод.");
-
-            drugChoice = scanner.nextInt();
-
-        }
-
-        System.out.println("Выберите продолжительность схемы 1, 7 или 14 дней ");
-        int chemotherapyDuration = scanner.nextInt();
+        System.out.println("1 - Doxorubicin \n2 - BCG \n3 - Docetaxel \n4 - Cabazitaxel \n5 - Degarelix " +
+                "\n6 - Docetaxel + Degarelix \n7 - Degarelix + Docetaxel \n8 - Cabazitaxel + Degarelix" +
+                "\n9 - Degarelix + Cabazitaxel \nor write it manually:");
+        drugChoice = scanner.nextLine();
 
         while (chemotherapyDuration != 1 && chemotherapyDuration != 7 && chemotherapyDuration != 14) {
-
-            System.out.println("Ошибка при выборе продолжительности терапии. Повторите ввод.");
-
+            System.out.println("Enter scheme duration 1, 7 or 14 days:");
             chemotherapyDuration = scanner.nextInt();
-
         }
 
-        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-        OutputStream teeStream = new TeeOutputStream(System.out, buffer);//После этой строки весь вывод хранится в buffer
-        System.setOut(new PrintStream(teeStream));
+        try {
+            File file = new File("diary.txt"); //СЃРѕР·РґР°РµРј С‚РµРєСЃС‚РѕРІС‹Р№ С„Р°Р№Р»
+            file.createNewFile();
 
-        //определяем день недели, предварительно переводим в Date
-        Date dateOfWeekToDateParser = new SimpleDateFormat("dd-MM-yyyy").parse(inputtedDateOfHospitalisation);
-        Calendar c = Calendar.getInstance();
-        c.setTime(dateOfWeekToDateParser);
-        int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
+            FileOutputStream fos = new FileOutputStream(file); //СЃРѕР·РґР°РµРј РїРѕС‚РѕРє РґР»СЏ Р·Р°РїРёСЃРё РІ С„Р°Р№Р»
+            PrintStream ps = new PrintStream(fos);
 
+            System.setOut(ps); //Р·Р°РїРёСЃС‹РІР°РµРј РґР°РЅРЅС‹Рµ РёР· РєРѕРЅСЃРѕР»Рё РІ С„Р°Р№Р»
+            ChemotherapyScheme.getCircularScheme(parsedDates[0], drugChoice, chemotherapyDuration);
+            Desktop.getDesktop().open(new File("diary.txt")); //РѕС‚РєСЂС‹РІР°РµРј С„Р°Р№Р» РІ РїСЂРёР»РѕР¶РµРЅРёРё РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+            ps.close(); //Р·Р°РєСЂС‹РІР°РµРј РїРѕС‚РѕРє
+        } catch (IOException e) {
+            System.out.println("An error occurred while writing to file");
+        }
+    }
 
-        switch (dayOfWeek) {
+    private static String[] getDatesFromString(String inputedDateAsString) {
+        int count = 0;
+        String[] allMatches = new String[1]; //РєРѕР»РёС‡РµСЃС‚РІРѕ РґР°С‚ РЅР° РІС…РѕРґРЅРѕР№ СЃС‚СЂРѕРєРµ (РјРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ РґР°С‚Сѓ РІС‹РїРёСЃРєРё РЅР°РїСЂРёРјРµСЂ)
+        Matcher m = Pattern
+                .compile("(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d")
+                .matcher(inputedDateAsString);
 
-            case 2 ->
-                    ChemotherapyScheme.getSchemeMonday(inputtedDateOfHospitalisation, drugChoice, chemotherapyDuration);
-            case 3 ->
-                    ChemotherapyScheme.getSchemeTuesday(inputtedDateOfHospitalisation, drugChoice, chemotherapyDuration);
-            case 4 ->
-                    ChemotherapyScheme.getSchemeWednesday(inputtedDateOfHospitalisation, drugChoice, chemotherapyDuration);
-            case 5 ->
-                    ChemotherapyScheme.getSchemeThursday(inputtedDateOfHospitalisation, drugChoice, chemotherapyDuration);
-            case 6 ->
-                    ChemotherapyScheme.getSchemeFriday(inputtedDateOfHospitalisation, drugChoice, chemotherapyDuration);
-
-            case 1, 7 -> System.out.println("Вы ввели дату выходного дня.");
-
+        while (m.find()) {
+            allMatches[count] = m.group();
+            count++;
         }
 
-        //сохраняем buffer в файл
-        try (OutputStream fileStream = new FileOutputStream("diary.txt")) {
-
-            buffer.writeTo(fileStream);
-
+        for (int i = 0; i < allMatches.length; i++) {
+            allMatches[i] = allMatches[i].replaceAll("/", "-").replaceAll("\\.", "-");
         }
 
-        //открываем файл в стандартной программе
-        Desktop.getDesktop().open(new File("diary.txt"));
-
+        return allMatches;
     }
 }
