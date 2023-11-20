@@ -18,24 +18,19 @@ public class ChemotherapyScheme {
         dischargeDate.setTime(sdf.parse(dateOfHospitalisation));
         dischargeDate.add(Calendar.DATE, schemeDuration);
 
-        Calendar finishDate = Calendar.getInstance();
-        finishDate.setTime(sdf.parse(dateOfHospitalisation));
-        finishDate.add(Calendar.DATE, schemeDuration + 1);
-
         int i = 0; //итератор по массивам с кол-вом добавляемых дней
 
-        while (processingDate.before(finishDate)) {
+        while (processingDate.compareTo(dischargeDate) <= 0) {
             int[] cycles = SchemePeriods.getPeriodByDate(initialDate);
 
-            if (processingDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
-
+            if (processingDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) { //обход с зав. в случае пятницы
                 System.out.println(sdf.format(processingDate.getTime()) + Diary.getHeadOfDepartmentRounds());
-            } else {
 
+            } else {
                 System.out.println(sdf.format(processingDate.getTime()));
             }
 
-            if (processingDate.equals(initialDate)) {
+            if (processingDate.equals(initialDate)) { //курс терапии в случае дня поступления
 
                 Diary.getTherapy(drugChoice);
 
@@ -56,6 +51,21 @@ public class ChemotherapyScheme {
             } else if (processingDate.equals(dischargeDate) && (drugChoice.equals("9"))) {
 
                 Diary.getTherapy("4");
+            }
+
+            if (schemeDuration == 1) { //обработка однодневного случая в т.ч. пятничного
+                Diary.getDiary(false);
+
+                if (processingDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
+                    processingDate.add(Calendar.DATE, 3);
+                } else {
+                    processingDate.add(Calendar.DATE, 1);
+                }
+
+                System.out.println();
+                System.out.println(sdf.format(processingDate.getTime()));
+                Diary.getDiary(true);
+                break;
             }
 
             Diary.getDiary(processingDate.equals(dischargeDate)); //дневник выписочный если день последний

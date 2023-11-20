@@ -20,9 +20,18 @@ public class Main {
         String drugChoice;
         int chemotherapyDuration = 0;
 
-        System.out.println("1 - Doxorubicin \n2 - BCG \n3 - Docetaxel \n4 - Cabazitaxel \n5 - Degarelix " +
-                "\n6 - Docetaxel + Degarelix \n7 - Degarelix + Docetaxel \n8 - Cabazitaxel + Degarelix" +
-                "\n9 - Degarelix + Cabazitaxel \nor write it manually:");
+        System.out.println("""
+                1 - Doxorubicin\s
+                2 - BCG\s
+                3 - Docetaxel\s
+                4 - Cabazitaxel\s
+                5 - Degarelix\s
+                6 - Docetaxel + Degarelix\s
+                7 - Degarelix + Docetaxel\s
+                8 - Cabazitaxel + Degarelix
+                9 - Degarelix + Cabazitaxel\s
+                or write it manually:""");
+
         drugChoice = scanner.nextLine();
 
         while (chemotherapyDuration != 1 && chemotherapyDuration != 7 && chemotherapyDuration != 14) {
@@ -32,7 +41,6 @@ public class Main {
 
         try {
             File file = new File("diary.txt"); //создаем текстовый файл
-            file.createNewFile();
 
             FileOutputStream fos = new FileOutputStream(file); //создаем поток для записи в файл
             PrintStream ps = new PrintStream(fos);
@@ -40,7 +48,8 @@ public class Main {
             System.setOut(ps); //записываем данные из консоли в файл
             ChemotherapyScheme.getCircularScheme(parsedDates[0], drugChoice, chemotherapyDuration);
             Desktop.getDesktop().open(new File("diary.txt")); //открываем файл в приложении по умолчанию
-            ps.close(); //закрываем поток
+            ps.close();
+
         } catch (IOException e) {
             System.out.println("An error occurred while writing to file");
         }
