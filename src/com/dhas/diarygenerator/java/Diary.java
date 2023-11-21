@@ -16,7 +16,7 @@ public class Diary {
         return " Совместный обход с зав. отделением Гуриным Э.В.";
     }
 
-    static void getDiary(boolean isDischarged) {
+    static void getDiaryEntry(boolean isDischarged) {
 
         var bodyTemp = Math.ceil(((Math.random() * (BODY_TEMPERATURE_MAX - BODY_TEMPERATURE_MIN) + BODY_TEMPERATURE_MIN))
                 * BODY_TEMPERATURE_SCALE) / BODY_TEMPERATURE_SCALE;
@@ -50,7 +50,7 @@ public class Diary {
                 + "\nЛеч. врач Майстренко Е.В.");
     }
 
-    static void getTherapy(Drugs drugChoice) {
+    static void getTherapyEntry(Drugs drugChoice) {
         switch (drugChoice) {
             case DOXORUBICINE ->
                     System.out.println(Drugs.DOXORUBICINE.getDiaryEntry());

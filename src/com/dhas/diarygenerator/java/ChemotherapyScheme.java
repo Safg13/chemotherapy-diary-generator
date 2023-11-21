@@ -32,32 +32,32 @@ public class ChemotherapyScheme {
 
             if (processingDate.equals(initialDate)) { //курс терапии в случае дня поступления
 
-                Diary.getTherapy(drugChoice);
+                Diary.getTherapyEntry(drugChoice);
 
             } else if (processingDate.get(Calendar.DAY_OF_WEEK) == initialDate.get(Calendar.DAY_OF_WEEK)
                     && drugChoice == Drugs.DOXORUBICINE || drugChoice == Drugs.BCG) {
 
-                Diary.getTherapy(drugChoice);
+                Diary.getTherapyEntry(drugChoice);
 
             } else if (processingDate.equals(dischargeDate) && (drugChoice == Drugs.DOCETAXEL_DEGARELIX)) {
 
-                Diary.getTherapy(Drugs.DEGARELIX);
+                Diary.getTherapyEntry(Drugs.DEGARELIX);
 
             } else if (processingDate.equals(dischargeDate) && (drugChoice == Drugs.DEGARELIX_DOCETAXEL)) {
 
-                Diary.getTherapy(Drugs.DOCETAXEL_DEGARELIX);
+                Diary.getTherapyEntry(Drugs.DOCETAXEL_DEGARELIX);
 
             } else if (processingDate.equals(dischargeDate) && (drugChoice == Drugs.CABAZITAXEL_DEGARELIX)) {
 
-                Diary.getTherapy(Drugs.DEGARELIX);
+                Diary.getTherapyEntry(Drugs.DEGARELIX);
 
             } else if (processingDate.equals(dischargeDate) && (drugChoice == Drugs.DEGARELIX_CABAZITAXEL)) {
 
-                Diary.getTherapy(Drugs.CABAZITAXEL);
+                Diary.getTherapyEntry(Drugs.CABAZITAXEL);
             }
 
             if (schemeDuration == 1) { //обработка однодневного случая в т.ч. пятничного
-                Diary.getDiary(false);
+                Diary.getDiaryEntry(false);
 
                 if (processingDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
                     processingDate.add(Calendar.DATE, 3);
@@ -67,11 +67,11 @@ public class ChemotherapyScheme {
 
                 System.out.println();
                 System.out.println(sdf.format(processingDate.getTime()));
-                Diary.getDiary(true);
+                Diary.getDiaryEntry(true);
                 break;
             }
 
-            Diary.getDiary(processingDate.equals(dischargeDate)); //дневник выписочный если день последний
+            Diary.getDiaryEntry(processingDate.equals(dischargeDate)); //дневник выписочный если день последний
 
             processingDate.add(Calendar.DATE, cycles[i]);
             System.out.println();
@@ -84,6 +84,3 @@ public class ChemotherapyScheme {
         }
     }
 }
-
-
-
