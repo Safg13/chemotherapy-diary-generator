@@ -16,8 +16,7 @@ public class Main {
         System.out.println("Enter hospitalisation date:");
         String inputtedDateOfHospitalisation = scanner.nextLine();
         String[] parsedDates = getDatesFromString(inputtedDateOfHospitalisation);
-
-        String drugChoice;
+        Drugs drugChoice = null;
         int chemotherapyDuration = 0;
 
         System.out.println("""
@@ -31,8 +30,14 @@ public class Main {
                 8 - Cabazitaxel + Degarelix
                 9 - Degarelix + Cabazitaxel\s
                 or write it manually:""");
-
-        drugChoice = scanner.nextLine();
+        
+        switch (scanner.nextLine()) {
+            case ("1") -> drugChoice = Drugs.DOXORUBICINE;
+            case ("2") -> drugChoice = Drugs.BCG;
+            case ("3") -> drugChoice = Drugs.DOCETAXEL;
+            case ("4") -> drugChoice = Drugs.CABAZITAXEL;
+            case ("5") -> drugChoice = Drugs.DEGARELIX;
+        }
 
         while (chemotherapyDuration != 1 && chemotherapyDuration != 7 && chemotherapyDuration != 14) {
             System.out.println("Enter scheme duration 1, 7 or 14 days:");

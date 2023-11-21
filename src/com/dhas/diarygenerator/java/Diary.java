@@ -50,20 +50,20 @@ public class Diary {
                 + "\nЛеч. врач Майстренко Е.В.");
     }
 
-    static void getTherapy(String drugChoice) {
+    static void getTherapy(Drugs drugChoice) {
         switch (drugChoice) {
-            case "1" ->
+            case DOXORUBICINE ->
                     System.out.println(Drugs.DOXORUBICINE.getDiaryEntry());
-            case "2" ->
+            case BCG ->
                     System.out.println(Drugs.BCG.getDiaryEntry());
-            case "3", "6" ->
+            case DOCETAXEL, DOCETAXEL_DEGARELIX ->
                     System.out.println(Drugs.DOCETAXEL.getDiaryEntry());
-            case "4", "8" ->
+            case CABAZITAXEL, CABAZITAXEL_DEGARELIX ->
                     System.out.println(Drugs.CABAZITAXEL.getDiaryEntry());
-            case "5", "7", "9" ->
+            case DEGARELIX, DEGARELIX_DOCETAXEL, DEGARELIX_CABAZITAXEL ->
                     System.out.println(Drugs.DEGARELIX.getDiaryEntry());
 
-            default -> System.out.println("Пациент получил " + drugChoice + ", перенес удовлетворительно.");
+            default -> System.out.println("Пациент получил __________ перенес удовлетворительно.");
         }
     }
 }

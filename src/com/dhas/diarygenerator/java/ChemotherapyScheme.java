@@ -7,7 +7,7 @@ import java.util.Calendar;
 public class ChemotherapyScheme {
     static SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
-    public static void getCircularScheme(String dateOfHospitalisation, String drugChoice, int schemeDuration) throws ParseException {
+    public static void getCircularScheme(String dateOfHospitalisation, Drugs drugChoice, int schemeDuration) throws ParseException {
         Calendar initialDate = Calendar.getInstance();
         initialDate.setTime(sdf.parse(dateOfHospitalisation));
 
@@ -35,22 +35,25 @@ public class ChemotherapyScheme {
                 Diary.getTherapy(drugChoice);
 
             } else if (processingDate.get(Calendar.DAY_OF_WEEK) == initialDate.get(Calendar.DAY_OF_WEEK)
-                    && (drugChoice.equals("1") || drugChoice.equals("2"))) {
+                    && drugChoice == Drugs.DOXORUBICINE || drugChoice == Drugs.BCG) {
 
                 Diary.getTherapy(drugChoice);
 
-            } else if (processingDate.equals(dischargeDate) && (drugChoice.equals("6"))) {
+            } else if (processingDate.equals(dischargeDate) && (drugChoice == Drugs.DOCETAXEL_DEGARELIX)) {
 
-                Diary.getTherapy("5");
-            } else if (processingDate.equals(dischargeDate) && (drugChoice.equals("7"))) {
+                Diary.getTherapy(Drugs.DEGARELIX);
 
-                Diary.getTherapy("6");
-            } else if (processingDate.equals(dischargeDate) && (drugChoice.equals("8"))) {
+            } else if (processingDate.equals(dischargeDate) && (drugChoice == Drugs.DEGARELIX_DOCETAXEL)) {
 
-                Diary.getTherapy("5");
-            } else if (processingDate.equals(dischargeDate) && (drugChoice.equals("9"))) {
+                Diary.getTherapy(Drugs.DOCETAXEL_DEGARELIX);
 
-                Diary.getTherapy("4");
+            } else if (processingDate.equals(dischargeDate) && (drugChoice == Drugs.CABAZITAXEL_DEGARELIX)) {
+
+                Diary.getTherapy(Drugs.DEGARELIX);
+
+            } else if (processingDate.equals(dischargeDate) && (drugChoice == Drugs.DEGARELIX_CABAZITAXEL)) {
+
+                Diary.getTherapy(Drugs.CABAZITAXEL);
             }
 
             if (schemeDuration == 1) { //обработка однодневного случая в т.ч. пятничного

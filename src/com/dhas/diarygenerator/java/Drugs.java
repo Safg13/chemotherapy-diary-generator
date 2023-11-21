@@ -5,7 +5,11 @@ public enum Drugs {
     BCG("Пациент получил курс внутрипузырной терапии препаратом Имурон-Вак 100 мг в/п, экспозиция препарата в мочевом пузыре 2 часа, перенес удовлетворительно."),
     DOCETAXEL("Пациент получил курс ХТ препаратом Доцетаксел 75 мг/м2 в/в, перенес удовлетворительно"),
     CABAZITAXEL("Пациент получил курс ХТ препаратом Кабазитаксел 25 мг/м2 в/в, перенес удовлетворительно"),
-    DEGARELIX("Пациент получил курс АДТ препаратом Дегареликс 80 мг п/к, перенес удовлетворительно");
+    DEGARELIX("Пациент получил курс АДТ препаратом Дегареликс 80 мг п/к, перенес удовлетворительно"),
+    DOCETAXEL_DEGARELIX(DOCETAXEL.getDiaryEntry()),
+    CABAZITAXEL_DEGARELIX(CABAZITAXEL.getDiaryEntry()),
+    DEGARELIX_DOCETAXEL(DEGARELIX.getDiaryEntry()),
+    DEGARELIX_CABAZITAXEL(DEGARELIX.getDiaryEntry());
 
     private final String diary;
 
