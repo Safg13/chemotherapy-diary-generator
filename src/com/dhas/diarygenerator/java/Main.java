@@ -40,14 +40,14 @@ public class Main {
         }
 
         try {
-            File file = new File("diary.txt"); //СЃРѕР·РґР°РµРј С‚РµРєСЃС‚РѕРІС‹Р№ С„Р°Р№Р»
+            File file = new File("diary.txt"); //создаем текстовый файл
 
-            FileOutputStream fos = new FileOutputStream(file); //СЃРѕР·РґР°РµРј РїРѕС‚РѕРє РґР»СЏ Р·Р°РїРёСЃРё РІ С„Р°Р№Р»
+            FileOutputStream fos = new FileOutputStream(file); //создаем поток для записи в файл
             PrintStream ps = new PrintStream(fos);
 
-            System.setOut(ps); //Р·Р°РїРёСЃС‹РІР°РµРј РґР°РЅРЅС‹Рµ РёР· РєРѕРЅСЃРѕР»Рё РІ С„Р°Р№Р»
+            System.setOut(ps); //записываем данные из консоли в файл
             ChemotherapyScheme.getCircularScheme(parsedDates[0], drugChoice, chemotherapyDuration);
-            Desktop.getDesktop().open(new File("diary.txt")); //РѕС‚РєСЂС‹РІР°РµРј С„Р°Р№Р» РІ РїСЂРёР»РѕР¶РµРЅРёРё РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+            Desktop.getDesktop().open(new File("diary.txt")); //открываем файл в приложении по умолчанию
             ps.close();
 
         } catch (IOException e) {
@@ -57,7 +57,7 @@ public class Main {
 
     private static String[] getDatesFromString(String inputedDateAsString) {
         int count = 0;
-        String[] allMatches = new String[1]; //РєРѕР»РёС‡РµСЃС‚РІРѕ РґР°С‚ РЅР° РІС…РѕРґРЅРѕР№ СЃС‚СЂРѕРєРµ (РјРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ РґР°С‚Сѓ РІС‹РїРёСЃРєРё РЅР°РїСЂРёРјРµСЂ)
+        String[] allMatches = new String[1]; //количество дат на входной строке (можно добавить дату выписки например)
         Matcher m = Pattern
                 .compile("(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d")
                 .matcher(inputedDateAsString);
