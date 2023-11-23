@@ -23,13 +23,7 @@ public class ChemotherapyScheme {
         while (processingDate.compareTo(dischargeDate) <= 0) {
             int[] cycles = SchemePeriods.getPeriodByDate(initialDate);
 
-            if (processingDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) { //обход с зав. в случае пятницы
-                System.out.println(sdf.format(processingDate.getTime()) + Diary.getHeadOfDepartmentRounds());
-
-            } else {
-                System.out.println(sdf.format(processingDate.getTime()));
-            }
-
+            ChemotherapyScheme.printDateAndRounds(processingDate, dischargeDate);
             ChemotherapyScheme.printTherapyEntry(processingDate, initialDate, dischargeDate, drugChoice);
 
             if (schemeDuration == 1) { //обработка однодневного случая в т.ч. пятничного
@@ -44,7 +38,7 @@ public class ChemotherapyScheme {
                     processingDate.add(Calendar.DATE, 1);
                 }
                 System.out.println();
-                System.out.println(sdf.format(processingDate.getTime()));
+                ChemotherapyScheme.printDateAndRounds(processingDate, dischargeDate);
                 Diary.getDiaryEntry(true);
                 break;
             }
@@ -91,6 +85,15 @@ public class ChemotherapyScheme {
         } else if (processingDate.equals(dischargeDate) && (drugChoice == Drugs.DEGARELIX_CABAZITAXEL)) {
 
             Diary.getTherapyEntry(Drugs.CABAZITAXEL);
+        }
+    }
+
+    public static void printDateAndRounds(Calendar processingDate, Calendar dischargeDate) {
+        if (processingDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) { //обход с зав. в случае пятницы
+            System.out.println(sdf.format(processingDate.getTime()) + Diary.getHeadOfDepartmentRounds());
+
+        } else {
+            System.out.println(sdf.format(processingDate.getTime()));
         }
     }
 }
