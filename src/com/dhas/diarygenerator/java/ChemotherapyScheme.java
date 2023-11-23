@@ -27,12 +27,12 @@ public class ChemotherapyScheme {
             ChemotherapyScheme.printTherapyEntry(processingDate, initialDate, dischargeDate, drugChoice);
 
             if (schemeDuration == 1) { //обработка однодневного случая в т.ч. пятничного
-                if (drugChoice == Drugs.DOCETAXEL_GOSERELIN || drugChoice == Drugs.DOCETAXEL_DEGARELIX || drugChoice == Drugs.DEGARELIX_DOCETAXEL || drugChoice == Drugs.DEGARELIX_CABAZITAXEL || drugChoice == Drugs.CABAZITAXEL_DEGARELIX) {
+                if (drugChoice.getTwoDrugsScheme()) {
                     ChemotherapyScheme.printTherapyEntry(dischargeDate, initialDate, dischargeDate, drugChoice);
                 }
                 Diary.getDiaryEntry(false);
 
-                if (processingDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
+                if (isFriday(processingDate)) {
                     processingDate.add(Calendar.DATE, 3);
                 } else {
                     processingDate.add(Calendar.DATE, 1);
@@ -43,7 +43,7 @@ public class ChemotherapyScheme {
                 break;
             }
 
-            Diary.getDiaryEntry(processingDate.equals(dischargeDate)); //дневник выписочный если день последний
+            Diary.getDiaryEntry(isDischargeDay(processingDate, dischargeDate)); //дневник выписочный если день последний
 
             processingDate.add(Calendar.DATE, cycles[i]);
             System.out.println();
@@ -66,34 +66,42 @@ public class ChemotherapyScheme {
 
             Diary.getTherapyEntry(drugChoice);
 
-        } else if (processingDate.equals(dischargeDate) && (drugChoice == Drugs.DOCETAXEL_DEGARELIX)) {
+        } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice == Drugs.DOCETAXEL_DEGARELIX)) {
 
             Diary.getTherapyEntry(Drugs.DEGARELIX);
 
-        } else if (processingDate.equals(dischargeDate) && (drugChoice == Drugs.DOCETAXEL_GOSERELIN)) {
+        } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice == Drugs.DOCETAXEL_GOSERELIN)) {
 
             Diary.getTherapyEntry(Drugs.GOSERELIN);
 
-        } else if (processingDate.equals(dischargeDate) && (drugChoice == Drugs.DEGARELIX_DOCETAXEL)) {
+        } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice == Drugs.DEGARELIX_DOCETAXEL)) {
 
             Diary.getTherapyEntry(Drugs.DOCETAXEL_DEGARELIX);
 
-        } else if (processingDate.equals(dischargeDate) && (drugChoice == Drugs.CABAZITAXEL_DEGARELIX)) {
+        } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice == Drugs.CABAZITAXEL_DEGARELIX)) {
 
             Diary.getTherapyEntry(Drugs.DEGARELIX);
 
-        } else if (processingDate.equals(dischargeDate) && (drugChoice == Drugs.DEGARELIX_CABAZITAXEL)) {
+        } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice == Drugs.DEGARELIX_CABAZITAXEL)) {
 
             Diary.getTherapyEntry(Drugs.CABAZITAXEL);
         }
     }
 
     public static void printDateAndRounds(Calendar processingDate, Calendar dischargeDate) {
-        if (processingDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) { //обход с зав. в случае пятницы
+        if (isFriday(processingDate)) { //обход с зав. в случае пятницы
             System.out.println(sdf.format(processingDate.getTime()) + Diary.getHeadOfDepartmentRounds());
 
         } else {
             System.out.println(sdf.format(processingDate.getTime()));
         }
+    }
+
+    public static boolean isDischargeDay(Calendar processingDate, Calendar dischargeDate) {
+        return processingDate.equals(dischargeDate);
+    }
+
+    public static boolean isFriday(Calendar processingDate) {
+        return processingDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY;
     }
 }
