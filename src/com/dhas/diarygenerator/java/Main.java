@@ -16,7 +16,6 @@ public class Main {
         System.out.println("Enter hospitalisation date:");
         String inputtedDateOfHospitalisation = scanner.nextLine();
         String[] parsedDates = getDatesFromString(inputtedDateOfHospitalisation);
-        Drugs drugChoice = null;
         int chemotherapyDuration = 0;
 
         System.out.println("""
@@ -25,27 +24,16 @@ public class Main {
                 3 - Docetaxel\s
                 4 - Cabazitaxel\s
                 5 - Degarelix\s
-                6 - Docetaxel + Degarelix\s
-                7 - Degarelix + Docetaxel\s
-                8 - Cabazitaxel + Degarelix
-                9 - Degarelix + Cabazitaxel\s
-                10 - Goserelin\s
-                11 - Docetaxel + Goserelin\s
-                or write it manually:""");
-        
-        switch (scanner.nextLine()) {
-            case ("1") -> drugChoice = Drugs.DOXORUBICINE;
-            case ("2") -> drugChoice = Drugs.BCG;
-            case ("3") -> drugChoice = Drugs.DOCETAXEL;
-            case ("4") -> drugChoice = Drugs.CABAZITAXEL;
-            case ("5") -> drugChoice = Drugs.DEGARELIX;
-            case ("6") -> drugChoice = Drugs.DOCETAXEL_DEGARELIX;
-            case ("7") -> drugChoice = Drugs.DEGARELIX_DOCETAXEL;
-            case ("8") -> drugChoice = Drugs.CABAZITAXEL_DEGARELIX;
-            case ("9") -> drugChoice = Drugs.DEGARELIX_CABAZITAXEL;
-            case ("10") -> drugChoice = Drugs.GOSERELIN;
-            case ("11") -> drugChoice = Drugs.DOCETAXEL_GOSERELIN;
-        }
+                6 - Goserelin\s
+                7 - Docetaxel + Degarelix\s
+                8 - Docetaxel + Goserelin\s
+                9 - Cabazitaxel + Degarelix
+                10 - Degarelix + Docetaxel\s
+                11 - Degarelix + Cabazitaxel
+                Choose scheme:
+                """);
+
+        Drugs drugChoice = Drugs.values()[scanner.nextInt() - 1];
 
         while (chemotherapyDuration != 1 && chemotherapyDuration != 7 && chemotherapyDuration != 14) {
             System.out.println("Enter scheme duration 1, 7 or 14 days:");
