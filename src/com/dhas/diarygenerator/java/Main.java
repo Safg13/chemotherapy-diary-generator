@@ -18,21 +18,7 @@ public class Main {
         String[] parsedDates = getDatesFromString(inputtedDateOfHospitalisation);
         int chemotherapyDuration = 0;
 
-        System.out.println("""
-                1 - Doxorubicin\s
-                2 - BCG\s
-                3 - Docetaxel\s
-                4 - Cabazitaxel\s
-                5 - Degarelix\s
-                6 - Goserelin\s
-                7 - Docetaxel + Degarelix\s
-                8 - Docetaxel + Goserelin\s
-                9 - Cabazitaxel + Degarelix
-                10 - Degarelix + Docetaxel\s
-                11 - Degarelix + Cabazitaxel
-                Choose scheme:
-                """);
-
+        printSchemeSelector();
         Drugs drugChoice = Drugs.values()[scanner.nextInt() - 1];
 
         while (chemotherapyDuration != 1 && chemotherapyDuration != 7 && chemotherapyDuration != 14) {
@@ -73,5 +59,22 @@ public class Main {
         }
 
         return allMatches;
+    }
+
+    public static void printSchemeSelector() {
+        System.out.println("""
+                1 - Doxorubicin\s
+                2 - BCG\s
+                3 - Docetaxel\s
+                4 - Cabazitaxel\s
+                5 - Degarelix\s
+                6 - Goserelin\s
+                7 - Docetaxel + Degarelix\s
+                8 - Docetaxel + Goserelin\s
+                9 - Cabazitaxel + Degarelix
+                10 - Degarelix + Docetaxel\s
+                11 - Degarelix + Cabazitaxel
+                Choose scheme:
+                """);
     }
 }
