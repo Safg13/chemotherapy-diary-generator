@@ -29,6 +29,8 @@ public class Main {
                 7 - Degarelix + Docetaxel\s
                 8 - Cabazitaxel + Degarelix
                 9 - Degarelix + Cabazitaxel\s
+                10 - Goserelin\s
+                11 - Docetaxel + Goserelin\s
                 or write it manually:""");
         
         switch (scanner.nextLine()) {
