@@ -43,6 +43,8 @@ public class Main {
             case ("7") -> drugChoice = Drugs.DEGARELIX_DOCETAXEL;
             case ("8") -> drugChoice = Drugs.CABAZITAXEL_DEGARELIX;
             case ("9") -> drugChoice = Drugs.DEGARELIX_CABAZITAXEL;
+            case ("10") -> drugChoice = Drugs.GOSERELIN;
+            case ("11") -> drugChoice = Drugs.DOCETAXEL_GOSERELIN;
         }
 
         while (chemotherapyDuration != 1 && chemotherapyDuration != 7 && chemotherapyDuration != 14) {
