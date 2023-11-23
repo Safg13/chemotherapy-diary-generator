@@ -61,7 +61,7 @@ public class ChemotherapyScheme {
 
             Diary.getTherapyEntry(drugChoice);
 
-        } else if (processingDate.get(Calendar.DAY_OF_WEEK) == initialDate.get(Calendar.DAY_OF_WEEK)
+        } else if (isSameDayOfWeek(initialDate, processingDate)
                 && (drugChoice == Drugs.DOXORUBICINE || drugChoice == Drugs.BCG)) {
 
             Diary.getTherapyEntry(drugChoice);
@@ -103,5 +103,9 @@ public class ChemotherapyScheme {
 
     public static boolean isFriday(Calendar processingDate) {
         return processingDate.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY;
+    }
+
+    public static boolean isSameDayOfWeek(Calendar firstDate, Calendar secondDate) {
+        return firstDate.get(Calendar.DAY_OF_WEEK) == secondDate.get(Calendar.DAY_OF_WEEK);
     }
 }
