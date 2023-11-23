@@ -68,7 +68,7 @@ public class ChemotherapyScheme {
             Diary.getTherapyEntry(drugChoice);
 
         } else if (processingDate.get(Calendar.DAY_OF_WEEK) == initialDate.get(Calendar.DAY_OF_WEEK)
-                && drugChoice == Drugs.DOXORUBICINE || drugChoice == Drugs.BCG) {
+                && (drugChoice == Drugs.DOXORUBICINE || drugChoice == Drugs.BCG)) {
 
             Diary.getTherapyEntry(drugChoice);
 
