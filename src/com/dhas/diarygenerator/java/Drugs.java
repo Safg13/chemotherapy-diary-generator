@@ -6,7 +6,9 @@ public enum Drugs {
     DOCETAXEL("Пациент получил курс ХТ препаратом Доцетаксел 75 мг/м2 в/в, перенес удовлетворительно"),
     CABAZITAXEL("Пациент получил курс ХТ препаратом Кабазитаксел 25 мг/м2 в/в, перенес удовлетворительно"),
     DEGARELIX("Пациент получил курс АДТ препаратом Дегареликс 80 мг п/к, перенес удовлетворительно"),
+    GOSERELIN("Пациент получил курс АДТ препаратом Гозерелин 3.6 мг п/к, перенес удовлетворительно"),
     DOCETAXEL_DEGARELIX(DOCETAXEL.getDiaryEntry()),
+    DOCETAXEL_GOSERELIN(DOCETAXEL.getDiaryEntry()),
     CABAZITAXEL_DEGARELIX(CABAZITAXEL.getDiaryEntry()),
     DEGARELIX_DOCETAXEL(DEGARELIX.getDiaryEntry()),
     DEGARELIX_CABAZITAXEL(DEGARELIX.getDiaryEntry());

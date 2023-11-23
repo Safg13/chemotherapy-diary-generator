@@ -43,6 +43,10 @@ public class ChemotherapyScheme {
 
                 Diary.getTherapyEntry(Drugs.DEGARELIX);
 
+            } else if (processingDate.equals(dischargeDate) && (drugChoice == Drugs.DOCETAXEL_GOSERELIN)) {
+
+                Diary.getTherapyEntry(Drugs.GOSERELIN);
+
             } else if (processingDate.equals(dischargeDate) && (drugChoice == Drugs.DEGARELIX_DOCETAXEL)) {
 
                 Diary.getTherapyEntry(Drugs.DOCETAXEL_DEGARELIX);
