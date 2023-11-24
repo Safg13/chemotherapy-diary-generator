@@ -1,7 +1,6 @@
 package com.dhas.diarygenerator.java;
 
 public class Diary {
-
     final static double BODY_TEMPERATURE_MIN = 36.5; //нижний порог температуры в дневниках
     final static double BODY_TEMPERATURE_MAX = 36.9; //верхний порог температуры в дневниках
     final static double BODY_TEMPERATURE_SCALE = Math.pow(10, 1); //округление температуры в дневниках

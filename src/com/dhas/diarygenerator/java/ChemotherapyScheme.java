@@ -23,11 +23,11 @@ public class ChemotherapyScheme {
         while (processingDate.compareTo(dischargeDate) <= 0) {
             int[] cycles = SchemePeriods.getPeriodByDate(initialDate);
 
-            ChemotherapyScheme.printDateAndRounds(processingDate, dischargeDate);
+            ChemotherapyScheme.printDateAndRounds(processingDate);
             ChemotherapyScheme.printTherapyEntry(processingDate, initialDate, dischargeDate, drugChoice);
 
             if (schemeDuration == 1) { //обработка однодневного случая в т.ч. пятничного
-                if (drugChoice.getTwoDrugsScheme()) {
+                if (drugChoice.getIsTwoDrugsScheme()) {
                     ChemotherapyScheme.printTherapyEntry(dischargeDate, initialDate, dischargeDate, drugChoice);
                 }
                 Diary.getDiaryEntry(false);
@@ -38,7 +38,7 @@ public class ChemotherapyScheme {
                     processingDate.add(Calendar.DATE, 1);
                 }
                 System.out.println();
-                ChemotherapyScheme.printDateAndRounds(processingDate, dischargeDate);
+                ChemotherapyScheme.printDateAndRounds(processingDate);
                 Diary.getDiaryEntry(true);
                 break;
             }
@@ -62,7 +62,7 @@ public class ChemotherapyScheme {
             Diary.getTherapyEntry(drugChoice);
 
         } else if (isSameDayOfWeek(initialDate, processingDate)
-                && (drugChoice == Drugs.DOXORUBICINE || drugChoice == Drugs.BCG)) {
+                && (drugChoice.getIsIntravesical())) {
 
             Diary.getTherapyEntry(drugChoice);
 
@@ -88,7 +88,7 @@ public class ChemotherapyScheme {
         }
     }
 
-    public static void printDateAndRounds(Calendar processingDate, Calendar dischargeDate) {
+    public static void printDateAndRounds(Calendar processingDate) {
         if (isFriday(processingDate)) { //обход с зав. в случае пятницы
             System.out.println(sdf.format(processingDate.getTime()) + Diary.getHeadOfDepartmentRounds());
 
