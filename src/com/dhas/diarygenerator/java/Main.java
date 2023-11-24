@@ -62,19 +62,21 @@ public class Main {
     }
 
     public static void printSchemeSelector() {
-        System.out.println("""
-                1 - Doxorubicin\s
-                2 - BCG\s
-                3 - Docetaxel\s
-                4 - Cabazitaxel\s
-                5 - Degarelix\s
-                6 - Goserelin\s
-                7 - Docetaxel + Degarelix\s
-                8 - Docetaxel + Goserelin\s
-                9 - Cabazitaxel + Degarelix
-                10 - Degarelix + Docetaxel\s
-                11 - Degarelix + Cabazitaxel
-                Choose scheme:
-                """);
+        int n = 0;
+        String newLine = System.lineSeparator();
+        String schemes = "";
+        String[] drugs = {
+                "Doxorubicin", "BCG", "Docetaxel", "Cabazitaxel", "Degarelix", "Docetaxel + Degarelix",
+                "Degarelix + Docetaxel", "Cabazitaxel + Degarelix", "Degarelix + Cabazitaxel",
+                "Goserelin", "Docetaxel + Goserelin"};
+
+
+        for (int i = 0; i < drugs.length; i++) {
+            schemes = schemes.concat(++n + " - " + drugs[i] + newLine);
+        }
+        schemes = schemes.concat("Choose scheme:");
+
+        System.out.println(schemes);
     }
+
 }
