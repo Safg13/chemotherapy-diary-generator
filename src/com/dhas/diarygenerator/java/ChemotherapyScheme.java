@@ -66,25 +66,10 @@ public class ChemotherapyScheme {
 
             System.out.println(drugChoice.getDiaryEntry());
 
-        } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice == Drugs.DOCETAXEL_DEGARELIX)) {
+        } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice.getIsTwoDrugsScheme())) {
 
-            System.out.println(Drugs.DEGARELIX.getDiaryEntry());
+            System.out.println(drugChoice.getSecondDrug().getDiaryEntry());
 
-        } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice == Drugs.DOCETAXEL_GOSERELIN)) {
-
-            System.out.println(Drugs.GOSERELIN.getDiaryEntry());
-
-        } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice == Drugs.DEGARELIX_DOCETAXEL)) {
-
-            System.out.println(Drugs.DOCETAXEL_DEGARELIX.getDiaryEntry());
-
-        } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice == Drugs.CABAZITAXEL_DEGARELIX)) {
-
-            System.out.println(Drugs.DEGARELIX.getDiaryEntry());
-
-        } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice == Drugs.DEGARELIX_CABAZITAXEL)) {
-
-            System.out.println(Drugs.CABAZITAXEL.getDiaryEntry());
         }
     }
 
