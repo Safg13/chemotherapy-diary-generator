@@ -70,7 +70,6 @@ public class Main {
                 "Degarelix + Docetaxel", "Cabazitaxel + Degarelix", "Degarelix + Cabazitaxel",
                 "Goserelin", "Docetaxel + Goserelin"};
 
-
         for (String drug : drugs) {
             schemes = schemes.concat(Integer.toString(++n)).concat(" - ").concat(drug).concat(newLine);
         }
