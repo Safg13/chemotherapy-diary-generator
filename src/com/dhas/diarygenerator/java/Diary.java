@@ -48,23 +48,4 @@ public class Diary {
                 (isDischarged ? "\nВыписывается в удовлетворительном состоянии. Рекомендации при выписке даны." : "")
                 + "\nЛеч. врач Майстренко Е.В.");
     }
-
-    static void getTherapyEntry(Drugs drugChoice) {
-        switch (drugChoice) {
-            case DOXORUBICINE ->
-                    System.out.println(Drugs.DOXORUBICINE.getDiaryEntry());
-            case BCG ->
-                    System.out.println(Drugs.BCG.getDiaryEntry());
-            case DOCETAXEL, DOCETAXEL_DEGARELIX, DOCETAXEL_GOSERELIN ->
-                    System.out.println(Drugs.DOCETAXEL.getDiaryEntry());
-            case CABAZITAXEL, CABAZITAXEL_DEGARELIX ->
-                    System.out.println(Drugs.CABAZITAXEL.getDiaryEntry());
-            case DEGARELIX, DEGARELIX_DOCETAXEL, DEGARELIX_CABAZITAXEL ->
-                    System.out.println(Drugs.DEGARELIX.getDiaryEntry());
-            case GOSERELIN ->
-                    System.out.println(Drugs.GOSERELIN.getDiaryEntry());
-
-            default -> System.out.println("Пациент получил __________ перенес удовлетворительно.");
-        }
-    }
 }

@@ -59,32 +59,32 @@ public class ChemotherapyScheme {
     public static void printTherapyEntry(Calendar processingDate, Calendar initialDate, Calendar dischargeDate, Drugs drugChoice) {
         if (processingDate.equals(initialDate)) { //курс терапии в случае дня поступления
 
-            Diary.getTherapyEntry(drugChoice);
+            System.out.println(drugChoice.getDiaryEntry());
 
         } else if (isSameDayOfWeek(initialDate, processingDate)
                 && (drugChoice.getIsIntravesical())) {
 
-            Diary.getTherapyEntry(drugChoice);
+            System.out.println(drugChoice.getDiaryEntry());
 
         } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice == Drugs.DOCETAXEL_DEGARELIX)) {
 
-            Diary.getTherapyEntry(Drugs.DEGARELIX);
+            System.out.println(Drugs.DEGARELIX.getDiaryEntry());
 
         } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice == Drugs.DOCETAXEL_GOSERELIN)) {
 
-            Diary.getTherapyEntry(Drugs.GOSERELIN);
+            System.out.println(Drugs.GOSERELIN.getDiaryEntry());
 
         } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice == Drugs.DEGARELIX_DOCETAXEL)) {
 
-            Diary.getTherapyEntry(Drugs.DOCETAXEL_DEGARELIX);
+            System.out.println(Drugs.DOCETAXEL_DEGARELIX.getDiaryEntry());
 
         } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice == Drugs.CABAZITAXEL_DEGARELIX)) {
 
-            Diary.getTherapyEntry(Drugs.DEGARELIX);
+            System.out.println(Drugs.DEGARELIX.getDiaryEntry());
 
         } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice == Drugs.DEGARELIX_CABAZITAXEL)) {
 
-            Diary.getTherapyEntry(Drugs.CABAZITAXEL);
+            System.out.println(Drugs.CABAZITAXEL.getDiaryEntry());
         }
     }
 
