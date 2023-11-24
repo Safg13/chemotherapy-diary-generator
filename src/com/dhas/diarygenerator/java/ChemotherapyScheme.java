@@ -21,7 +21,7 @@ public class ChemotherapyScheme {
         int i = 0; //итератор по массивам с кол-вом добавляемых дней
 
         while (processingDate.compareTo(dischargeDate) <= 0) {
-            int[] cycles = SchemePeriods.getPeriodByDate(initialDate);
+            int[] cycles = DaysAndPeriods.getPeriodsByDate(initialDate);
 
             ChemotherapyScheme.printDateAndRounds(processingDate);
             ChemotherapyScheme.printTherapyEntry(processingDate, initialDate, dischargeDate, drugChoice);
