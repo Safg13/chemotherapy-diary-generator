@@ -71,8 +71,8 @@ public class Main {
                 "Goserelin", "Docetaxel + Goserelin"};
 
 
-        for (int i = 0; i < drugs.length; i++) {
-            schemes = schemes.concat(++n + " - " + drugs[i] + newLine);
+        for (String drug : drugs) {
+            schemes = schemes.concat(Integer.toString(++n)).concat(" - ").concat(drug).concat(newLine);
         }
         schemes = schemes.concat("Choose scheme:");
 

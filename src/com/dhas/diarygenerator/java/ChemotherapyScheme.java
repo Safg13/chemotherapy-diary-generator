@@ -69,7 +69,6 @@ public class ChemotherapyScheme {
         } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice.getIsTwoDrugsScheme())) {
 
             System.out.println(drugChoice.getSecondDrug().getDiaryEntry());
-
         }
     }
 
