@@ -32,12 +32,8 @@ public class ChemotherapyScheme {
                 }
                 Diary.getDiaryEntry(false);
 
-                if (isFriday(processingDate)) {
-                    processingDate.add(Calendar.DATE, 3);
-                } else {
-                    processingDate.add(Calendar.DATE, 1);
-                }
-                System.out.println();
+                processingDate.add(Calendar.DATE, isFriday(processingDate) ? 3 : 1);
+
                 ChemotherapyScheme.printDateAndRounds(processingDate);
                 Diary.getDiaryEntry(true);
                 break;
@@ -46,13 +42,8 @@ public class ChemotherapyScheme {
             Diary.getDiaryEntry(isDischargeDay(processingDate, dischargeDate)); //дневник выписочный если день последний
 
             processingDate.add(Calendar.DATE, cycles[i]);
-            System.out.println();
 
-            i++;
-
-            if (i == cycles.length) {
-                i = 0;
-            }
+            i = (i + 1) % cycles.length;
         }
     }
 
