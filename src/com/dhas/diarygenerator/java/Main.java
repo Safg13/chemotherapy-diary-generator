@@ -33,7 +33,7 @@ public class Main {
             PrintStream ps = new PrintStream(fos);
 
             System.setOut(ps); //записываем данные из консоли в файл
-            ChemotherapyScheme.getCircularScheme(parsedDates[0], drugChoice, chemotherapyDuration);
+            ChemotherapyScheme.printDiaries(parsedDates[0], drugChoice, chemotherapyDuration);
             Desktop.getDesktop().open(new File("diary.txt")); //открываем файл в приложении по умолчанию
             ps.close();
 

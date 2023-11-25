@@ -7,7 +7,7 @@ import java.util.Calendar;
 public class ChemotherapyScheme {
     static SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
-    public static void getCircularScheme(String dateOfHospitalisation, Drugs drugChoice, int schemeDuration) throws ParseException {
+    public static void printDiaries(String dateOfHospitalisation, Drugs drugChoice, int schemeDuration) throws ParseException {
         Calendar initialDate = Calendar.getInstance();
         initialDate.setTime(sdf.parse(dateOfHospitalisation));
 
@@ -19,10 +19,9 @@ public class ChemotherapyScheme {
         dischargeDate.add(Calendar.DATE, schemeDuration);
 
         int i = 0; //итератор по массивам с кол-вом добавляемых дней
+        int[] cycles = DaysAndPeriods.getPeriodsByDate(initialDate);
 
         while (processingDate.compareTo(dischargeDate) <= 0) {
-            int[] cycles = DaysAndPeriods.getPeriodsByDate(initialDate);
-
             ChemotherapyScheme.printDateAndRounds(processingDate);
             ChemotherapyScheme.printTherapyEntry(processingDate, initialDate, dischargeDate, drugChoice);
 
@@ -49,16 +48,13 @@ public class ChemotherapyScheme {
 
     public static void printTherapyEntry(Calendar processingDate, Calendar initialDate, Calendar dischargeDate, Drugs drugChoice) {
         if (processingDate.equals(initialDate)) { //курс терапии в случае дня поступления
-
             System.out.println(drugChoice.getDiaryEntry());
 
         } else if (isSameDayOfWeek(initialDate, processingDate)
                 && (drugChoice.getIsIntravesical())) {
-
             System.out.println(drugChoice.getDiaryEntry());
 
         } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice.getIsTwoDrugsScheme())) {
-
             System.out.println(drugChoice.getSecondDrug().getDiaryEntry());
         }
     }
