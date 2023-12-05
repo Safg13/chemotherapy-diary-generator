@@ -6,9 +6,10 @@ public enum Drugs {
     DOCETAXEL("Пациент получил курс ХТ препаратом Доцетаксел 75 мг/м2 в/в, перенес удовлетворительно.", false, false, null),
     CABAZITAXEL("Пациент получил курс ХТ препаратом Кабазитаксел 25 мг/м2 в/в, перенес удовлетворительно.", false, false, null),
     DEGARELIX("Пациент получил курс АДТ препаратом Дегареликс 80 мг п/к, перенес удовлетворительно.", false, false, null),
-    GOSERELIN("Пациент получил курс АДТ препаратом Гозерелин 3.6 мг п/к, перенес удовлетворительно.", false, false, null),
+    GOSERELIN_3_6("Пациент получил курс АДТ препаратом Гозерелин 3.6 мг п/к, перенес удовлетворительно.", false, false, null),
+    TRIPTORELIN_11_25("Пациент получил курс АДТ препаратом Трипторелин 11.25 мг в/м, перенес удовлетворительно.", false, false, null),
     DOCETAXEL_DEGARELIX(DOCETAXEL.getDiaryEntry(), false, true, DEGARELIX),
-    DOCETAXEL_GOSERELIN(DOCETAXEL.getDiaryEntry(), false, true, GOSERELIN),
+    DOCETAXEL_GOSERELIN_3_6(DOCETAXEL.getDiaryEntry(), false, true, GOSERELIN_3_6),
     CABAZITAXEL_DEGARELIX(CABAZITAXEL.getDiaryEntry(), false, true, DEGARELIX),
     DEGARELIX_DOCETAXEL(DEGARELIX.getDiaryEntry(), false, true, DOCETAXEL),
     DEGARELIX_CABAZITAXEL(DEGARELIX.getDiaryEntry(), false, true, CABAZITAXEL);
