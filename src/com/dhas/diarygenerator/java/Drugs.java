@@ -11,9 +11,11 @@ public enum Drugs {
     AVELUMAB("Пациент получил курс ИТ препаратом Авелумаб 800 мг в/в, перенес удовлетворительно", false, false, null),
     DOCETAXEL_DEGARELIX(DOCETAXEL.getDiaryEntry(), false, true, DEGARELIX),
     DOCETAXEL_GOSERELIN_3_6(DOCETAXEL.getDiaryEntry(), false, true, GOSERELIN_3_6),
+    DOCETAXEL_TRIPTORELIN_11_25(DOCETAXEL.getDiaryEntry(), false, true, TRIPTORELIN_11_25),
     CABAZITAXEL_DEGARELIX(CABAZITAXEL.getDiaryEntry(), false, true, DEGARELIX),
     DEGARELIX_DOCETAXEL(DEGARELIX.getDiaryEntry(), false, true, DOCETAXEL),
-    DEGARELIX_CABAZITAXEL(DEGARELIX.getDiaryEntry(), false, true, CABAZITAXEL);
+    DEGARELIX_CABAZITAXEL(DEGARELIX.getDiaryEntry(), false, true, CABAZITAXEL),
+    TRIPTORELIN_11_25_DOCETAXEL(TRIPTORELIN_11_25.getDiaryEntry(), false, true, DOCETAXEL);
 
     private final String diary;
     private final boolean isIntraVesicalScheme;
