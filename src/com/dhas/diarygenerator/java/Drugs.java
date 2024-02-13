@@ -1,8 +1,8 @@
 package com.dhas.diarygenerator.java;
 
 public enum Drugs {
-    DOXORUBICINE("Пациент получил курс внутрипузырной терапии препаратом Доксорубицин 50 мг в/п, экспозиция препарата в мочевом пузыре 2 часа, перенес удовлетворительно.", true, false, null),
-    BCG("Пациент получил курс внутрипузырной терапии препаратом Имурон-Вак 100 мг в/п, экспозиция препарата в мочевом пузыре 2 часа, перенес удовлетворительно.", true, false, null),
+    DOXORUBICINE_INTRAVESICAL("Пациент получил курс внутрипузырной терапии препаратом Доксорубицин 50 мг в/п, экспозиция препарата в мочевом пузыре 2 часа, перенес удовлетворительно.", true, false, null),
+    BCG_INTRAVESICAL("Пациент получил курс внутрипузырной терапии препаратом Имурон-Вак 100 мг в/п, экспозиция препарата в мочевом пузыре 2 часа, перенес удовлетворительно.", true, false, null),
     GEMCITABINE_INTRAVESICAL("Пациент получил курс внутрипузырной терапии препаратом Гемцитабин 1 мг в/п, экспозиция препарата в мочевом пузыре 2 часа, перенес удовлетворительно.", true, false, null),
     DOCETAXEL("Пациент получил курс ХТ препаратом Доцетаксел 75 мг/м2 в/в, перенес удовлетворительно.", false, false, null),
     CABAZITAXEL("Пациент получил курс ХТ препаратом Кабазитаксел 25 мг/м2 в/в, перенес удовлетворительно.", false, false, null),
@@ -13,10 +13,7 @@ public enum Drugs {
     DOCETAXEL_DEGARELIX(DOCETAXEL.getDiaryEntry(), false, true, DEGARELIX),
     DOCETAXEL_GOSERELIN_3_6(DOCETAXEL.getDiaryEntry(), false, true, GOSERELIN_3_6),
     DOCETAXEL_TRIPTORELIN_11_25(DOCETAXEL.getDiaryEntry(), false, true, TRIPTORELIN_11_25),
-    CABAZITAXEL_DEGARELIX(CABAZITAXEL.getDiaryEntry(), false, true, DEGARELIX),
-    DEGARELIX_DOCETAXEL(DEGARELIX.getDiaryEntry(), false, true, DOCETAXEL),
-    DEGARELIX_CABAZITAXEL(DEGARELIX.getDiaryEntry(), false, true, CABAZITAXEL),
-    TRIPTORELIN_11_25_DOCETAXEL(TRIPTORELIN_11_25.getDiaryEntry(), false, true, DOCETAXEL);
+    CABAZITAXEL_DEGARELIX(CABAZITAXEL.getDiaryEntry(), false, true, DEGARELIX);
 
     private final String diary;
     private final boolean isIntraVesicalScheme;

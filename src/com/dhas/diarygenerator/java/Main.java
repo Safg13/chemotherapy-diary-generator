@@ -17,9 +17,15 @@ public class Main {
         String inputtedDateOfHospitalisation = scanner.nextLine();
         String[] parsedDates = getDatesFromString(inputtedDateOfHospitalisation);
         int chemotherapyDuration = 0;
+        boolean isInverted = false;
 
         printSchemeSelector();
         Drugs drugChoice = Drugs.values()[scanner.nextInt() - 1];
+
+        if (drugChoice.getIsTwoDrugsScheme()) {
+            System.out.println("Do you want to invert the scheme?");
+            isInverted = scanner.nextBoolean();
+        }
 
         while (chemotherapyDuration != 1 && chemotherapyDuration != 7 && chemotherapyDuration != 14) {
             System.out.println("Enter scheme duration 1, 7 or 14 days:");
@@ -33,7 +39,7 @@ public class Main {
             PrintStream ps = new PrintStream(fos);
 
             System.setOut(ps); //записываем данные из консоли в файл
-            ChemotherapyScheme.printDiaries(parsedDates[0], drugChoice, chemotherapyDuration);
+            ChemotherapyScheme.printDiaries(parsedDates[0], drugChoice, chemotherapyDuration, isInverted);
             Desktop.getDesktop().open(new File("diary.txt")); //открываем файл в приложении по умолчанию
             ps.close();
 

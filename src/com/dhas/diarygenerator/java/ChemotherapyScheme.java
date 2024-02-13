@@ -7,7 +7,7 @@ import java.util.Calendar;
 public class ChemotherapyScheme {
     static SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
-    public static void printDiaries(String dateOfHospitalisation, Drugs drugChoice, int schemeDuration) throws ParseException {
+    public static void printDiaries(String dateOfHospitalisation, Drugs drugChoice, int schemeDuration, boolean isInverted) throws ParseException {
         Calendar initialDate = Calendar.getInstance();
         initialDate.setTime(sdf.parse(dateOfHospitalisation));
 
@@ -23,11 +23,11 @@ public class ChemotherapyScheme {
 
         while (processingDate.compareTo(dischargeDate) <= 0) {
             ChemotherapyScheme.printDateAndRounds(processingDate);
-            ChemotherapyScheme.printTherapyEntry(processingDate, initialDate, dischargeDate, drugChoice);
+            ChemotherapyScheme.printTherapyEntry(processingDate, initialDate, dischargeDate, drugChoice, isInverted);
 
             if (schemeDuration == 1) { //обработка однодневного случая в т.ч. пятничного
                 if (drugChoice.getIsTwoDrugsScheme()) {
-                    ChemotherapyScheme.printTherapyEntry(dischargeDate, initialDate, dischargeDate, drugChoice);
+                    ChemotherapyScheme.printTherapyEntry(dischargeDate, initialDate, dischargeDate, drugChoice, isInverted);
                 }
                 Diary.getDiaryEntry(false);
 
@@ -46,15 +46,21 @@ public class ChemotherapyScheme {
         }
     }
 
-    public static void printTherapyEntry(Calendar processingDate, Calendar initialDate, Calendar dischargeDate, Drugs drugChoice) {
-        if (processingDate.equals(initialDate)) { //курс терапии в случае дня поступления
+    public static void printTherapyEntry(Calendar processingDate, Calendar initialDate, Calendar dischargeDate, Drugs drugChoice, boolean isInverted) {
+        if (processingDate.equals(initialDate) && drugChoice.getIsTwoDrugsScheme() && isInverted) {
+            System.out.println(drugChoice.getSecondDrug().getDiaryEntry());
+
+        } else if (processingDate.equals(initialDate)) { //курс терапии в случае дня поступления
             System.out.println(drugChoice.getDiaryEntry());
 
         } else if (isSameDayOfWeek(initialDate, processingDate)
                 && (drugChoice.getIsIntravesical())) {
             System.out.println(drugChoice.getDiaryEntry());
 
-        } else if (isDischargeDay(processingDate, dischargeDate) && (drugChoice.getIsTwoDrugsScheme())) {
+        } else if (isDischargeDay(processingDate, dischargeDate) && drugChoice.getIsTwoDrugsScheme() && isInverted) {
+            System.out.println(drugChoice.getDiaryEntry());
+
+        } else if (isDischargeDay(processingDate, dischargeDate) && drugChoice.getIsTwoDrugsScheme()) {
             System.out.println(drugChoice.getSecondDrug().getDiaryEntry());
         }
     }
