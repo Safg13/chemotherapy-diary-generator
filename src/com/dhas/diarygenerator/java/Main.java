@@ -18,13 +18,17 @@ public class Main {
         String[] parsedDates = getDatesFromString(inputtedDateOfHospitalisation);
         int chemotherapyDuration = 0;
         boolean isInverted = false;
+        char resumeToInvertedQuestion;
 
         printSchemeSelector();
         Drugs drugChoice = Drugs.values()[scanner.nextInt() - 1];
 
         if (drugChoice.getIsTwoDrugsScheme()) {
-            System.out.println("Do you want to invert the scheme?");
-            isInverted = scanner.nextBoolean();
+            System.out.println("Do you want to invert the scheme? Y/N");
+            resumeToInvertedQuestion = scanner.next().charAt(0);
+            if (resumeToInvertedQuestion == 'y' || resumeToInvertedQuestion == 'Y') {
+                isInverted = true;
+            }
         }
 
         while (chemotherapyDuration != 1 && chemotherapyDuration != 7 && chemotherapyDuration != 14) {
